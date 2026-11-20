@@ -20,25 +20,29 @@
          ========================================================================= -->
     <style>
         :root {
-            /* --- EASY COLOR CUSTOMIZATION --- */
-            --color-primary: #0f2547;         /* Main Navy Blue */
-            --color-primary-light: #1d3f72;   /* Hover Navy Blue */
-            --color-primary-dark: #091526;    /* Deepest Navy */
-            --color-primary-tint: #eef3f9;    /* Soft Blue Tint */
-            --color-secondary: #64748b;       /* Slate Gray */
-            --color-secondary-dark: #334155;  /* Dark Slate Gray */
-            --color-secondary-light: #cbd5e1; /* Border Gray */
-            --color-bg: #f1f5f9;              /* Page Background */
-            --color-surface: #ffffff;         /* Card Surface */
-            --color-accent: #3b82f6;          /* Highlight Blue */
-            --color-success: #15803d;         /* Status Green */
-            --color-error: #dc2626;           /* Validation Red */
+            /* --- PRIMARY BRAND COLORS (Currently Navy Blue) --- */
+            --color-primary-dark: #091526;    /* Deepest Navy (Hero background, footer) */
+            --color-primary: #0f2544;         /* Main Navy Blue (Headers, primary buttons) */
+            --color-primary-light: #1e3a63;   /* Hover Navy Blue (Button hovers, active cards) */
+            --color-primary-tint: #eef3f9;    /* Very light blue tint (Badges, subtle highlights) */
+
+            /* --- SECONDARY BRAND COLORS (Currently Slate & Cool Gray) --- */
+            --color-secondary-dark: #334155;  /* Dark Slate Gray (Subheadings, secondary buttons) */
+            --color-secondary: #64748b;       /* Medium Cool Gray (Muted text, icons) */
+            --color-secondary-light: #cbd5e1; /* Light Gray (Borders, dividers) */
+            --color-bg-page: #f4f6f9;         /* Off-white Cool Gray (Main page background) */
+            --color-surface: #ffffff;         /* Pure White (Cards, form container) */
+
+            /* --- ACCENT & STATUS COLORS --- */
+            --color-accent: #3b82f6;          /* Bright Tech Blue (Focus rings, subtle highlights) */
+            --color-success: #15803d;         /* Confirmation Green */
+            --color-error: #dc2626;           /* Form Validation Red */
         }
 
         /* Base Typography & Theme Application */
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background-color: var(--color-bg);
+            background-color: var(--color-bg-page);
             color: var(--color-primary-dark);
         }
 
@@ -61,20 +65,16 @@
         .border-brand-light { border-color: var(--color-secondary-light); }
         .border-brand-primary { border-color: var(--color-primary); }
 
-        /* Primary Button Styling */
+        /* Primary Button Styling with Smooth Hover */
         .btn-brand-primary {
             background-color: var(--color-primary);
             color: #ffffff;
             transition: all 0.2s ease;
         }
-        .btn-brand-primary:hover:not(:disabled) {
+        .btn-brand-primary:hover {
             background-color: var(--color-primary-light);
             transform: translateY(-1px);
-            box-shadow: 0 6px 16px -4px rgba(15, 37, 71, 0.35);
-        }
-        .btn-brand-primary:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
+            box-shadow: 0 6px 16px -4px rgba(15, 37, 68, 0.35);
         }
 
         /* Secondary Button Styling */
@@ -85,21 +85,6 @@
         }
         .btn-brand-secondary:hover {
             background-color: var(--color-primary-dark);
-        }
-
-        /* Portal Tab Styling */
-        .portal-tab {
-            border-bottom: 3px solid transparent;
-            color: var(--color-secondary);
-            transition: all 0.2s ease;
-        }
-        .portal-tab:hover {
-            color: var(--color-primary);
-        }
-        .portal-tab.active-tab {
-            border-bottom-color: var(--color-primary);
-            color: var(--color-primary);
-            background-color: var(--color-primary-tint);
         }
 
         /* Form Input Focus States */
@@ -124,9 +109,19 @@
             background-size: 24px 24px;
         }
 
-        /* Official Digital ID Card Shimmer */
-        .id-card-gradient {
-            background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 60%, var(--color-primary-light) 100%);
+        /* Print Styles for Confirmation Receipt */
+        @media print {
+            body * { visibility: hidden; }
+            #receipt-printable, #receipt-printable * { visibility: visible; }
+            #receipt-printable {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                box-shadow: none !important;
+                border: 1px solid #cbd5e1 !important;
+            }
+            .no-print { display: none !important; }
         }
     </style>
 </head>
@@ -134,14 +129,22 @@
 
     <!-- =========================================================================
          NAVIGATION HEADER
+         Displays the customizable Logo, School Name, and Quick Links
          ========================================================================= -->
     <header class="bg-brand-surface border-b border-brand-light sticky top-0 z-40 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 
                 <!-- LOGO & SCHOOL NAME CONTAINER -->
-                <a href="#" onclick="switchPortalTab('register'); return false;" class="flex items-center gap-3.5 group focus:outline-none">
+                <a href="#" class="flex items-center gap-3.5 group focus:outline-none">
+                    <!-- =================================================================
+                         LOGO SLOT (UNDECIDED PLACEHOLDER)
+                         To use an image file later, replace the SVG inside #school-logo-slot
+                         in the JavaScript configuration or directly right here with:
+                         <img src="your-logo.png" alt="School Logo" class="w-12 h-12 object-contain">
+                         ================================================================= -->
                     <div id="school-logo-slot" class="w-12 h-12 rounded-xl bg-brand-primary text-white flex items-center justify-center shadow-md group-hover:scale-105 transition-transform shrink-0">
+                        <!-- Default Placeholder Crest SVG (Auto-populated by JS Config too) -->
                         <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5z" />
                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
@@ -149,27 +152,41 @@
                     </div>
 
                     <div class="flex flex-col">
-                        <span data-school-name class="font-bold text-sm sm:text-lg leading-tight text-brand-primary-dark tracking-tight">
+                        <span data-school-name class="font-bold text-base sm:text-lg leading-tight text-brand-primary-dark tracking-tight">
                             Baron-Bryan Institution of Computer Science and Engineering
                         </span>
                         <span class="text-xs font-medium text-brand-secondary tracking-wider uppercase mt-0.5">
-                            Official Admissions &amp; Student Portal
+                            Admissions &amp; Student Enrollment Portal
                         </span>
                     </div>
                 </a>
 
-                <!-- QUICK NAVIGATION / LIVE ROSTER COUNTER -->
-                <div class="flex items-center gap-2 sm:gap-4">
-                    <button type="button" onclick="switchPortalTab('roster')" class="px-3 sm:px-4 py-2 rounded-xl border border-brand-light bg-slate-50 hover:bg-slate-100 text-xs sm:text-sm font-semibold text-brand-primary-dark flex items-center gap-2 transition-colors">
-                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                        <span class="hidden sm:inline">Live Roster</span>
-                        <span class="sm:hidden">Roster</span>
-                        <span id="header-roster-count" class="px-2 py-0.5 text-xs font-bold rounded-full bg-brand-primary text-white">0</span>
+                <!-- DESKTOP NAVIGATION LINKS -->
+                <nav class="hidden md:flex items-center gap-6">
+                    <a href="#programs" class="text-sm font-semibold text-brand-secondary-dark hover:text-brand-primary transition-colors">
+                        Academic Tracks
+                    </a>
+                    <a href="#admissions-info" class="text-sm font-semibold text-brand-secondary-dark hover:text-brand-primary transition-colors">
+                        Requirements
+                    </a>
+                    <button type="button" onclick="toggleAdminModal(true)" class="text-sm font-semibold text-brand-secondary hover:text-brand-primary flex items-center gap-1.5 transition-colors">
+                        <span>Roster</span>
+                        <span id="roster-count-badge" class="px-2 py-0.5 text-xs font-bold rounded-full bg-brand-primary-tint text-brand-primary">0</span>
                     </button>
+                    <a href="#register" class="btn-brand-primary px-5 py-2.5 rounded-lg text-sm font-semibold shadow-sm">
+                        Register Now
+                    </a>
+                </nav>
 
-                    <button type="button" id="header-auth-btn" onclick="switchPortalTab('login')" class="btn-brand-primary px-4 sm:px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold shadow-sm">
-                        Student Login
+                <!-- MOBILE MENU / ROSTER BUTTON -->
+                <div class="flex items-center gap-2 md:hidden">
+                    <button type="button" onclick="toggleAdminModal(true)" class="p-2.5 rounded-lg border border-brand-light text-brand-secondary-dark text-xs font-semibold flex items-center gap-1">
+                        <span>Roster</span>
+                        <span id="roster-count-badge-mobile" class="px-1.5 py-0.5 text-xs font-bold rounded-full bg-brand-primary-tint text-brand-primary">0</span>
                     </button>
+                    <a href="#register" class="btn-brand-primary px-3.5 py-2 rounded-lg text-xs font-semibold">
+                        Apply
+                    </a>
                 </div>
             </div>
         </div>
@@ -181,352 +198,461 @@
     <section class="bg-brand-primary-dark text-white relative overflow-hidden">
         <div class="hero-grid-pattern absolute inset-0 opacity-60 pointer-events-none"></div>
         
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 relative z-10">
-            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-8">
-                <div class="max-w-2xl">
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-slate-200 text-xs font-semibold tracking-wide uppercase mb-4">
-                        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-                        <span>Invite-Only Admissions Portal &bull; Live Sync Active</span>
-                    </div>
-
-                    <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight leading-tight mb-3">
-                        Welcome to <span data-school-short class="text-slate-300 underline decoration-slate-500 underline-offset-4">BBICSE</span> Enrollment
-                    </h1>
-
-                    <p class="text-sm sm:text-base text-slate-300 leading-relaxed">
-                        Scanned the QR code? Enter the official <strong class="text-white">Registration Invite Code</strong> provided on the board to create your student account, generate your Digital Student ID, and appear on the live class roster.
-                    </p>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 relative z-10">
+            <div class="max-w-3xl">
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/15 text-slate-200 text-xs font-semibold tracking-wide uppercase mb-6">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span>2026–2027 Academic Year Registration Open</span>
                 </div>
 
-                <!-- Quick Status Card -->
-                <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-5 shrink-0 flex items-center gap-5">
-                    <div>
-                        <div class="text-xs uppercase tracking-wider text-slate-300 font-semibold">Live Enrolled Students</div>
-                        <div class="flex items-baseline gap-2 mt-1">
-                            <span id="hero-roster-count" class="text-3xl sm:text-4xl font-extrabold text-white font-mono-tech">0</span>
-                            <span class="text-xs text-emerald-300 font-semibold">Verified Accounts</span>
-                        </div>
-                    </div>
-                    <button type="button" onclick="switchPortalTab('roster')" class="px-4 py-2.5 rounded-xl bg-white text-slate-900 hover:bg-slate-100 text-xs font-bold shadow transition-colors">
-                        View Board &rarr;
-                    </button>
+                <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight mb-6">
+                    Engineering Tomorrow’s Innovators at <span data-school-short class="text-slate-300 underline decoration-slate-500 underline-offset-8">Baron-Bryan</span>
+                </h1>
+
+                <p class="text-base sm:text-lg text-slate-300 leading-relaxed mb-8 max-w-2xl">
+                    Welcome to the official student registration portal for the <strong class="text-white font-semibold" data-school-name>Baron-Bryan Institution of Computer Science and Engineering</strong>. Complete your enrollment below to select your technical concentration and reserve your placement.
+                </p>
+
+                <div class="flex flex-wrap items-center gap-4">
+                    <a href="#register" class="bg-white text-slate-900 hover:bg-slate-100 font-bold px-7 py-3.5 rounded-xl text-sm sm:text-base shadow-lg transition-all flex items-center gap-2">
+                        <span>Start Student Registration</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </a>
+                    <a href="#programs" class="px-6 py-3.5 rounded-xl text-sm sm:text-base font-semibold text-slate-200 border border-slate-600 hover:bg-white/10 transition-colors">
+                        Explore Departments
+                    </a>
+                </div>
+            </div>
+
+            <!-- Key Enrollment Highlights Strip -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-14 pt-8 border-t border-white/15">
+                <div class="bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/10">
+                    <div class="text-xs uppercase tracking-wider text-slate-400 font-semibold">Application Deadline</div>
+                    <div class="text-lg font-bold text-white mt-1">August 15, 2026</div>
+                </div>
+                <div class="bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/10">
+                    <div class="text-xs uppercase tracking-wider text-slate-400 font-semibold">Core Concentrations</div>
+                    <div class="text-lg font-bold text-white mt-1">4 Specialized Tracks</div>
+                </div>
+                <div class="bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/10">
+                    <div class="text-xs uppercase tracking-wider text-slate-400 font-semibold">Registration Status</div>
+                    <div class="text-lg font-bold text-emerald-400 mt-1">Instant Digital Confirmation</div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- =========================================================================
-         MAIN INTERACTIVE PORTAL (3 TABS: REGISTER | LOGIN | LIVE ROSTER)
+         ACADEMIC TRACKS / DEPARTMENTS SECTION
          ========================================================================= -->
-    <main id="portal-main" class="flex-grow py-8 sm:py-12 max-w-5xl w-full mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="programs" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+            <div>
+                <span class="text-xs font-bold uppercase tracking-widest text-brand-secondary">Curriculum Overview</span>
+                <h2 class="text-2xl sm:text-3xl font-bold text-brand-primary-dark mt-1">Academic Tracks &amp; Concentrations</h2>
+            </div>
+            <p class="text-sm text-brand-secondary max-w-md">
+                Applicants choose one primary focus area during registration. Click any track below to pre-select it on your registration form.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Track Card 1 -->
+            <div onclick="selectTrackAndScroll('Software Engineering & AI')" class="bg-brand-surface rounded-2xl p-6 border border-brand-light shadow-sm hover:shadow-md hover:border-brand-primary transition-all cursor-pointer group flex flex-col justify-between">
+                <div>
+                    <div class="w-11 h-11 rounded-xl bg-brand-primary-tint text-brand-primary flex items-center justify-center mb-4 group-hover:scale-105 transition-transform">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                        </svg>
+                    </div>
+                    <span class="font-mono-tech text-xs font-bold text-brand-secondary">DEPT-CS101</span>
+                    <h3 class="text-lg font-bold text-brand-primary-dark mt-1 mb-2">Software Engineering &amp; AI</h3>
+                    <p class="text-sm text-brand-secondary leading-relaxed">
+                        Full-stack architecture, algorithms, machine learning models, and scalable cloud applications.
+                    </p>
+                </div>
+                <div class="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-brand-primary">
+                    <span>Select Track</span>
+                    <span>&rarr;</span>
+                </div>
+            </div>
+
+            <!-- Track Card 2 -->
+            <div onclick="selectTrackAndScroll('Cybersecurity & Network Defense')" class="bg-brand-surface rounded-2xl p-6 border border-brand-light shadow-sm hover:shadow-md hover:border-brand-primary transition-all cursor-pointer group flex flex-col justify-between">
+                <div>
+                    <div class="w-11 h-11 rounded-xl bg-brand-primary-tint text-brand-primary flex items-center justify-center mb-4 group-hover:scale-105 transition-transform">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        </svg>
+                    </div>
+                    <span class="font-mono-tech text-xs font-bold text-brand-secondary">DEPT-SEC204</span>
+                    <h3 class="text-lg font-bold text-brand-primary-dark mt-1 mb-2">Cybersecurity &amp; Network Defense</h3>
+                    <p class="text-sm text-brand-secondary leading-relaxed">
+                        Cryptography, ethical hacking, secure systems engineering, and enterprise network infrastructure.
+                    </p>
+                </div>
+                <div class="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-brand-primary">
+                    <span>Select Track</span>
+                    <span>&rarr;</span>
+                </div>
+            </div>
+
+            <!-- Track Card 3 -->
+            <div onclick="selectTrackAndScroll('Robotics & Embedded Systems')" class="bg-brand-surface rounded-2xl p-6 border border-brand-light shadow-sm hover:shadow-md hover:border-brand-primary transition-all cursor-pointer group flex flex-col justify-between">
+                <div>
+                    <div class="w-11 h-11 rounded-xl bg-brand-primary-tint text-brand-primary flex items-center justify-center mb-4 group-hover:scale-105 transition-transform">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+                        </svg>
+                    </div>
+                    <span class="font-mono-tech text-xs font-bold text-brand-secondary">DEPT-ENG310</span>
+                    <h3 class="text-lg font-bold text-brand-primary-dark mt-1 mb-2">Robotics &amp; Embedded Systems</h3>
+                    <p class="text-sm text-brand-secondary leading-relaxed">
+                        Microcontrollers, autonomous hardware design, circuit prototyping, and real-time control systems.
+                    </p>
+                </div>
+                <div class="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-brand-primary">
+                    <span>Select Track</span>
+                    <span>&rarr;</span>
+                </div>
+            </div>
+
+            <!-- Track Card 4 -->
+            <div onclick="selectTrackAndScroll('Data Science & Computational Math')" class="bg-brand-surface rounded-2xl p-6 border border-brand-light shadow-sm hover:shadow-md hover:border-brand-primary transition-all cursor-pointer group flex flex-col justify-between">
+                <div>
+                    <div class="w-11 h-11 rounded-xl bg-brand-primary-tint text-brand-primary flex items-center justify-center mb-4 group-hover:scale-105 transition-transform">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" />
+                        </svg>
+                    </div>
+                    <span class="font-mono-tech text-xs font-bold text-brand-secondary">DEPT-DAT405</span>
+                    <h3 class="text-lg font-bold text-brand-primary-dark mt-1 mb-2">Data Science &amp; Computational Math</h3>
+                    <p class="text-sm text-brand-secondary leading-relaxed">
+                        Statistical modeling, big data analytics, scientific simulation, and predictive visualization.
+                    </p>
+                </div>
+                <div class="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-brand-primary">
+                    <span>Select Track</span>
+                    <span>&rarr;</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================================
+         MAIN STUDENT REGISTRATION SECTION
+         ========================================================================= -->
+    <main id="register" class="flex-grow py-10 max-w-5xl w-full mx-auto px-4 sm:px-6 lg:px-8">
         
-        <!-- PORTAL NAVIGATION TABS -->
-        <div class="bg-brand-surface rounded-t-2xl border border-b-0 border-brand-light grid grid-cols-3 overflow-hidden shadow-sm">
-            <button type="button" id="tab-btn-register" onclick="switchPortalTab('register')" class="portal-tab active-tab py-4 px-2 sm:px-6 text-xs sm:text-sm font-bold flex items-center justify-center gap-2 focus:outline-none">
-                <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
-                </svg>
-                <span>New Registration</span>
-            </button>
-
-            <button type="button" id="tab-btn-login" onclick="switchPortalTab('login')" class="portal-tab py-4 px-2 sm:px-6 text-xs sm:text-sm font-bold flex items-center justify-center gap-2 border-x border-brand-light focus:outline-none">
-                <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2" />
-                </svg>
-                <span id="login-tab-label">Student Login</span>
-            </button>
-
-            <button type="button" id="tab-btn-roster" onclick="switchPortalTab('roster')" class="portal-tab py-4 px-2 sm:px-6 text-xs sm:text-sm font-bold flex items-center justify-center gap-2 focus:outline-none">
-                <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-                <span>Live Roster (<span id="tab-roster-count">0</span>)</span>
+        <!-- Admissions Checklist Banner -->
+        <div id="admissions-info" class="bg-brand-surface rounded-2xl border border-brand-light p-6 mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-sm">
+            <div class="flex items-start gap-4">
+                <div class="w-10 h-10 rounded-xl bg-brand-primary-tint text-brand-primary flex items-center justify-center shrink-0 mt-0.5">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </div>
+                <div>
+                    <h3 class="font-bold text-brand-primary-dark text-base">Enrollment Guidelines</h3>
+                    <p class="text-sm text-brand-secondary mt-0.5">
+                        Please fill out all required fields marked with <span class="text-red-600 font-bold">*</span>. Upon submission, you will receive a Student Application ID for orientation check-in.
+                    </p>
+                </div>
+            </div>
+            <button type="button" onclick="fillDemoData()" class="shrink-0 text-xs font-semibold px-3.5 py-2 rounded-lg border border-brand-light text-brand-secondary-dark hover:bg-slate-100 transition-colors">
+                Auto-Fill Sample Student
             </button>
         </div>
 
         <!-- =====================================================================
-             TAB 1: NEW STUDENT REGISTRATION (INVITE-CODE GATED)
+             REGISTRATION FORM CARD (Visible by default)
              ===================================================================== -->
-        <div id="view-register" class="bg-brand-surface rounded-b-2xl border border-brand-light shadow-md overflow-hidden">
-            <div class="bg-brand-primary px-6 sm:px-10 py-5 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+        <div id="registration-form-container" class="bg-brand-surface rounded-2xl border border-brand-light shadow-md overflow-hidden">
+            <!-- Form Top Header Bar -->
+            <div class="bg-brand-primary px-6 sm:px-10 py-6 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                 <div>
-                    <h2 class="text-lg sm:text-xl font-bold">New Student Account Registration</h2>
-                    <p class="text-slate-300 text-xs sm:text-sm mt-0.5">Authorized invite code required to enroll in <span data-school-short>BBICSE</span></p>
+                    <h2 class="text-xl sm:text-2xl font-bold tracking-tight">Official Student Registration Form</h2>
+                    <p class="text-slate-300 text-sm mt-1" data-school-name>Baron-Bryan Institution of Computer Science and Engineering</p>
                 </div>
                 <span class="font-mono-tech text-xs bg-white/15 px-3 py-1.5 rounded-lg self-start sm:self-auto">
-                    INVITE-ONLY ACCESS
+                    FORM BB-2026
                 </span>
             </div>
 
-            <form id="student-registration-form" novalidate class="p-6 sm:p-10 space-y-6">
+            <form id="student-registration-form" novalidate class="p-6 sm:p-10 space-y-10">
                 
-                <!-- Status / Error Banner -->
-                <div id="reg-alert-banner" class="hidden rounded-xl p-4 text-sm flex items-start gap-3">
-                    <svg class="w-5 h-5 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <!-- Global Error Alert (Hidden unless validation fails) -->
+                <div id="form-error-banner" class="hidden rounded-xl bg-red-50 border border-red-200 p-4 text-red-800 text-sm flex items-center gap-3">
+                    <svg class="w-5 h-5 text-red-600 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
-                    <span id="reg-alert-text"></span>
+                    <span>Please review and complete all highlighted required fields before submitting your registration.</span>
                 </div>
 
-                <!-- SECRET INVITE CODE BOX (Highlighted) -->
-                <div class="bg-brand-primary-tint border-2 border-brand-primary/25 rounded-2xl p-5 sm:p-6">
-                    <div class="flex items-start justify-between gap-4 mb-2">
-                        <label for="inviteCodeInput" class="block text-sm font-extrabold text-brand-primary-dark uppercase tracking-wide">
-                            Official Registration Invite Code <span class="text-red-600">*</span>
-                        </label>
-                        <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-brand-primary text-white">Required</span>
-                    </div>
-                    <p class="text-xs text-brand-secondary-dark mb-3">
-                        Enter the special access code shared by your admissions director / presenter to unlock registration.
-                    </p>
-                    <input type="text" id="inviteCodeInput" required autocomplete="off" placeholder="Enter invite code (e.g., BBICSE2026)" class="brand-input font-mono-tech uppercase w-full px-4 py-3 rounded-xl text-base font-bold tracking-wider">
-                </div>
-
-                <!-- STUDENT ACCOUNT & ACADEMIC FIELDS -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-2">
-                    <div class="sm:col-span-2">
-                        <label for="regFullName" class="block text-sm font-semibold text-brand-primary-dark mb-1.5">
-                            Student Full Name <span class="text-red-600">*</span>
-                        </label>
-                        <input type="text" id="regFullName" required placeholder="e.g., Jordan Taylor" class="brand-input w-full px-4 py-3 rounded-xl text-sm">
+                <!-- PART 1: STUDENT PERSONAL INFORMATION -->
+                <section>
+                    <div class="flex items-center gap-3 pb-3 mb-6 border-b border-brand-light">
+                        <span class="w-7 h-7 rounded-lg bg-brand-primary text-white text-xs font-bold flex items-center justify-center">1</span>
+                        <h3 class="text-lg font-bold text-brand-primary-dark">Student Personal Information</h3>
                     </div>
 
-                    <div>
-                        <label for="regEmail" class="block text-sm font-semibold text-brand-primary-dark mb-1.5">
-                            Email Address (Login ID) <span class="text-red-600">*</span>
-                        </label>
-                        <input type="email" id="regEmail" required placeholder="jordan.taylor@student.edu" class="brand-input w-full px-4 py-3 rounded-xl text-sm">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label for="firstName" class="block text-sm font-semibold text-brand-primary-dark mb-1.5">
+                                First Name <span class="text-red-600">*</span>
+                            </label>
+                            <input type="text" id="firstName" name="firstName" required placeholder="e.g., Jordan" class="brand-input w-full px-4 py-2.5 rounded-xl text-sm">
+                            <p class="error-msg hidden text-xs text-red-600 mt-1">First name is required.</p>
+                        </div>
+
+                        <div>
+                            <label for="lastName" class="block text-sm font-semibold text-brand-primary-dark mb-1.5">
+                                Last Name <span class="text-red-600">*</span>
+                            </label>
+                            <input type="text" id="lastName" name="lastName" required placeholder="e.g., Taylor" class="brand-input w-full px-4 py-2.5 rounded-xl text-sm">
+                            <p class="error-msg hidden text-xs text-red-600 mt-1">Last name is required.</p>
+                        </div>
+
+                        <div>
+                            <label for="dob" class="block text-sm font-semibold text-brand-primary-dark mb-1.5">
+                                Date of Birth <span class="text-red-600">*</span>
+                            </label>
+                            <input type="date" id="dob" name="dob" required class="brand-input w-full px-4 py-2.5 rounded-xl text-sm">
+                            <p class="error-msg hidden text-xs text-red-600 mt-1">Please enter a valid date of birth.</p>
+                        </div>
+
+                        <div>
+                            <label for="gradeLevel" class="block text-sm font-semibold text-brand-primary-dark mb-1.5">
+                                Entering Grade / Academic Level <span class="text-red-600">*</span>
+                            </label>
+                            <select id="gradeLevel" name="gradeLevel" required class="brand-input w-full px-4 py-2.5 rounded-xl text-sm">
+                                <option value="">Select entering level...</option>
+                                <option value="Grade 9 (Freshman)">Grade 9 (Freshman)</option>
+                                <option value="Grade 10 (Sophomore)">Grade 10 (Sophomore)</option>
+                                <option value="Grade 11 (Junior)">Grade 11 (Junior)</option>
+                                <option value="Grade 12 (Senior)">Grade 12 (Senior)</option>
+                                <option value="Undergraduate Year 1">Undergraduate Year 1</option>
+                                <option value="Transfer Student">Transfer Student</option>
+                            </select>
+                            <p class="error-msg hidden text-xs text-red-600 mt-1">Please select an academic level.</p>
+                        </div>
+
+                        <div>
+                            <label for="studentEmail" class="block text-sm font-semibold text-brand-primary-dark mb-1.5">
+                                Student Email Address <span class="text-red-600">*</span>
+                            </label>
+                            <input type="email" id="studentEmail" name="studentEmail" required placeholder="student@example.com" class="brand-input w-full px-4 py-2.5 rounded-xl text-sm">
+                            <p class="error-msg hidden text-xs text-red-600 mt-1">Please enter a valid email address.</p>
+                        </div>
+
+                        <div>
+                            <label for="studentPhone" class="block text-sm font-semibold text-brand-primary-dark mb-1.5">
+                                Phone Number <span class="text-red-600">*</span>
+                            </label>
+                            <input type="tel" id="studentPhone" name="studentPhone" required placeholder="(555) 234-5678" class="brand-input w-full px-4 py-2.5 rounded-xl text-sm">
+                            <p class="error-msg hidden text-xs text-red-600 mt-1">Please enter a phone number.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- PART 2: ACADEMIC & TECHNICAL PREFERENCES -->
+                <section>
+                    <div class="flex items-center gap-3 pb-3 mb-6 border-b border-brand-light">
+                        <span class="w-7 h-7 rounded-lg bg-brand-primary text-white text-xs font-bold flex items-center justify-center">2</span>
+                        <h3 class="text-lg font-bold text-brand-primary-dark">Academic &amp; Engineering Preferences</h3>
                     </div>
 
-                    <div>
-                        <label for="regPassword" class="block text-sm font-semibold text-brand-primary-dark mb-1.5">
-                            Create Account Password <span class="text-red-600">*</span>
-                        </label>
-                        <input type="password" id="regPassword" required placeholder="Create a password (min. 4 chars)" class="brand-input w-full px-4 py-3 rounded-xl text-sm">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label for="academicTrack" class="block text-sm font-semibold text-brand-primary-dark mb-1.5">
+                                Primary Academic Concentration <span class="text-red-600">*</span>
+                            </label>
+                            <select id="academicTrack" name="academicTrack" required class="brand-input w-full px-4 py-2.5 rounded-xl text-sm">
+                                <option value="">Choose your concentration...</option>
+                                <option value="Software Engineering & AI">Software Engineering &amp; AI</option>
+                                <option value="Cybersecurity & Network Defense">Cybersecurity &amp; Network Defense</option>
+                                <option value="Robotics & Embedded Systems">Robotics &amp; Embedded Systems</option>
+                                <option value="Data Science & Computational Math">Data Science &amp; Computational Math</option>
+                            </select>
+                            <p class="error-msg hidden text-xs text-red-600 mt-1">Please select an academic track.</p>
+                        </div>
+
+                        <div>
+                            <label for="experienceLevel" class="block text-sm font-semibold text-brand-primary-dark mb-1.5">
+                                Prior Coding / Engineering Experience <span class="text-red-600">*</span>
+                            </label>
+                            <select id="experienceLevel" name="experienceLevel" required class="brand-input w-full px-4 py-2.5 rounded-xl text-sm">
+                                <option value="">Select experience level...</option>
+                                <option value="Beginner (No prior experience)">Beginner (No prior experience)</option>
+                                <option value="Intermediate (Some classes or personal projects)">Intermediate (Some classes or personal projects)</option>
+                                <option value="Advanced (Competitive coding, robotics, or AP CS)">Advanced (Competitive coding, robotics, or AP CS)</option>
+                            </select>
+                            <p class="error-msg hidden text-xs text-red-600 mt-1">Please select your experience level.</p>
+                        </div>
+
+                        <!-- Co-Curricular Checkboxes -->
+                        <div class="sm:col-span-2">
+                            <span class="block text-sm font-semibold text-brand-primary-dark mb-2.5">
+                                Co-Curricular Clubs &amp; Labs of Interest (Optional)
+                            </span>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
+                                <label class="flex items-center gap-2.5 p-3 rounded-xl border border-brand-light hover:bg-slate-50 cursor-pointer text-sm">
+                                    <input type="checkbox" name="clubs" value="Robotics Team" class="w-4 h-4 rounded accent-slate-800">
+                                    <span>Robotics Team</span>
+                                </label>
+                                <label class="flex items-center gap-2.5 p-3 rounded-xl border border-brand-light hover:bg-slate-50 cursor-pointer text-sm">
+                                    <input type="checkbox" name="clubs" value="Cyber Defense Club" class="w-4 h-4 rounded accent-slate-800">
+                                    <span>Cyber Defense</span>
+                                </label>
+                                <label class="flex items-center gap-2.5 p-3 rounded-xl border border-brand-light hover:bg-slate-50 cursor-pointer text-sm">
+                                    <input type="checkbox" name="clubs" value="Hackathon Society" class="w-4 h-4 rounded accent-slate-800">
+                                    <span>Hackathon Society</span>
+                                </label>
+                                <label class="flex items-center gap-2.5 p-3 rounded-xl border border-brand-light hover:bg-slate-50 cursor-pointer text-sm">
+                                    <input type="checkbox" name="clubs" value="AI Research Lab" class="w-4 h-4 rounded accent-slate-800">
+                                    <span>AI Research Lab</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- PART 3: GUARDIAN / EMERGENCY CONTACT -->
+                <section>
+                    <div class="flex items-center gap-3 pb-3 mb-6 border-b border-brand-light">
+                        <span class="w-7 h-7 rounded-lg bg-brand-primary text-white text-xs font-bold flex items-center justify-center">3</span>
+                        <h3 class="text-lg font-bold text-brand-primary-dark">Parent / Guardian &amp; Emergency Contact</h3>
                     </div>
 
-                    <div>
-                        <label for="regMajor" class="block text-sm font-semibold text-brand-primary-dark mb-1.5">
-                            Academic Track / Major <span class="text-red-600">*</span>
-                        </label>
-                        <select id="regMajor" required class="brand-input w-full px-4 py-3 rounded-xl text-sm">
-                            <option value="">Select your major...</option>
-                            <option value="Computer Science">Computer Science</option>
-                            <option value="Cybersecurity">Cybersecurity</option>
-                            <option value="Robotics & AI">Robotics &amp; AI</option>
-                            <option value="Software Engineering">Software Engineering</option>
-                            <option value="Computer Engineering">Computer Engineering</option>
-                            <option value="Data Science">Data Science</option>
-                        </select>
-                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                        <div>
+                            <label for="guardianName" class="block text-sm font-semibold text-brand-primary-dark mb-1.5">
+                                Guardian Full Name <span class="text-red-600">*</span>
+                            </label>
+                            <input type="text" id="guardianName" name="guardianName" required placeholder="e.g., Morgan Taylor" class="brand-input w-full px-4 py-2.5 rounded-xl text-sm">
+                            <p class="error-msg hidden text-xs text-red-600 mt-1">Guardian name is required.</p>
+                        </div>
 
-                    <div>
-                        <label for="regGradYear" class="block text-sm font-semibold text-brand-primary-dark mb-1.5">
-                            Expected Graduation Year <span class="text-red-600">*</span>
-                        </label>
-                        <select id="regGradYear" required class="brand-input w-full px-4 py-3 rounded-xl text-sm">
-                            <option value="2027">Class of 2027</option>
-                            <option value="2028">Class of 2028</option>
-                            <option value="2029">Class of 2029</option>
-                            <option value="2030" selected>Class of 2030</option>
-                        </select>
-                    </div>
-                </div>
+                        <div>
+                            <label for="guardianRelation" class="block text-sm font-semibold text-brand-primary-dark mb-1.5">
+                                Relationship <span class="text-red-600">*</span>
+                            </label>
+                            <select id="guardianRelation" name="guardianRelation" required class="brand-input w-full px-4 py-2.5 rounded-xl text-sm">
+                                <option value="">Select relationship...</option>
+                                <option value="Parent">Parent</option>
+                                <option value="Legal Guardian">Legal Guardian</option>
+                                <option value="Emergency Contact (Self/Adult)">Emergency Contact (Adult Student)</option>
+                            </select>
+                            <p class="error-msg hidden text-xs text-red-600 mt-1">Please select a relationship.</p>
+                        </div>
 
-                <div class="pt-4 border-t border-brand-light flex flex-col sm:flex-row items-center justify-between gap-4">
-                    <p class="text-xs text-brand-secondary">
-                        Already have an account? <button type="button" onclick="switchPortalTab('login')" class="font-bold text-brand-primary underline">Sign in here</button>.
-                    </p>
-                    <button type="submit" id="reg-submit-btn" class="w-full sm:w-auto btn-brand-primary px-8 py-3.5 rounded-xl text-sm sm:text-base font-bold shadow-md flex items-center justify-center gap-2">
-                        <span>Verify Code &amp; Complete Registration</span>
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                        </svg>
-                    </button>
-                </div>
+                        <div>
+                            <label for="guardianContact" class="block text-sm font-semibold text-brand-primary-dark mb-1.5">
+                                Guardian Email or Phone <span class="text-red-600">*</span>
+                            </label>
+                            <input type="text" id="guardianContact" name="guardianContact" required placeholder="(555) 987-6543" class="brand-input w-full px-4 py-2.5 rounded-xl text-sm">
+                            <p class="error-msg hidden text-xs text-red-600 mt-1">Guardian contact is required.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- PART 4: CERTIFICATION & SUBMISSION -->
+                <section class="pt-4 border-t border-brand-light">
+                    <label class="flex items-start gap-3 cursor-pointer">
+                        <input type="checkbox" id="termsAgree" name="termsAgree" required class="w-4 h-4 mt-1 rounded accent-slate-800">
+                        <span class="text-sm text-brand-secondary-dark leading-relaxed">
+                            I certify that the information submitted in this registration application for <strong class="font-semibold text-brand-primary-dark" data-school-name>Baron-Bryan Institution of Computer Science and Engineering</strong> is accurate and complete. <span class="text-red-600 font-bold">*</span>
+                        </span>
+                    </label>
+                    <p id="terms-error" class="hidden text-xs text-red-600 mt-1.5 ml-7">You must agree to the certification statement to register.</p>
+
+                    <div class="mt-8 flex flex-col sm:flex-row items-center justify-end gap-4">
+                        <button type="reset" onclick="clearErrors()" class="w-full sm:w-auto px-6 py-3 rounded-xl border border-brand-light text-sm font-semibold text-brand-secondary-dark hover:bg-slate-100 transition-colors">
+                            Clear Form
+                        </button>
+                        <button type="submit" class="w-full sm:w-auto btn-brand-primary px-8 py-3.5 rounded-xl text-sm sm:text-base font-bold shadow-md flex items-center justify-center gap-2">
+                            <span>Complete Registration</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                            </svg>
+                        </button>
+                    </div>
+                </section>
             </form>
         </div>
 
         <!-- =====================================================================
-             TAB 2: STUDENT LOGIN PORTAL & DIGITAL ID CARD VIEW
+             CONFIRMATION RECEIPT CARD (Shown after successful submission)
              ===================================================================== -->
-        <div id="view-login" class="hidden bg-brand-surface rounded-b-2xl border border-brand-light shadow-md overflow-hidden">
-            
-            <!-- SUB-VIEW 2A: LOGIN FORM (Shown when logged out) -->
-            <div id="login-form-panel">
-                <div class="bg-brand-primary px-6 sm:px-10 py-5 text-white">
-                    <h2 class="text-lg sm:text-xl font-bold">Registered Student Portal Login</h2>
-                    <p class="text-slate-300 text-xs sm:text-sm mt-0.5">Sign in with your registered email and password to view your Official Student ID Card</p>
-                </div>
-
-                <form id="student-login-form" novalidate class="p-6 sm:p-10 max-w-xl mx-auto space-y-6">
-                    <div id="login-alert-banner" class="hidden rounded-xl bg-red-50 border border-red-200 p-4 text-red-800 text-sm flex items-center gap-3">
-                        <svg class="w-5 h-5 text-red-600 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        <div id="receipt-printable" class="hidden bg-brand-surface rounded-2xl border border-brand-light shadow-lg overflow-hidden">
+            <div class="bg-brand-primary px-6 sm:px-10 py-8 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 flex items-center justify-center shrink-0">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
                         </svg>
-                        <span id="login-alert-text">Invalid email or password.</span>
                     </div>
-
                     <div>
-                        <label for="loginEmail" class="block text-sm font-semibold text-brand-primary-dark mb-1.5">
-                            Student Email Address
-                        </label>
-                        <input type="email" id="loginEmail" required placeholder="jordan.taylor@student.edu" class="brand-input w-full px-4 py-3 rounded-xl text-sm">
+                        <span class="text-xs uppercase tracking-widest text-emerald-300 font-bold">Registration Confirmed</span>
+                        <h2 class="text-2xl font-bold mt-0.5">Enrollment Receipt</h2>
                     </div>
-
-                    <div>
-                        <label for="loginPassword" class="block text-sm font-semibold text-brand-primary-dark mb-1.5">
-                            Password
-                        </label>
-                        <input type="password" id="loginPassword" required placeholder="Enter your password" class="brand-input w-full px-4 py-3 rounded-xl text-sm">
-                    </div>
-
-                    <button type="submit" id="login-submit-btn" class="w-full btn-brand-primary py-3.5 rounded-xl text-sm sm:text-base font-bold shadow-md">
-                        Access Student Portal
-                    </button>
-
-                    <div class="text-center pt-2">
-                        <p class="text-xs text-brand-secondary">
-                            Need an account? Obtain the Invite Code from your presenter and <button type="button" onclick="switchPortalTab('register')" class="font-bold text-brand-primary underline">register here</button>.
-                        </p>
-                    </div>
-                </form>
+                </div>
+                <div class="bg-white/10 px-4 py-2.5 rounded-xl border border-white/15">
+                    <div class="text-xs text-slate-300 uppercase">Student Application ID</div>
+                    <div id="receipt-app-id" class="font-mono-tech text-lg font-bold text-white tracking-wider">BB-2026-0000</div>
+                </div>
             </div>
 
-            <!-- SUB-VIEW 2B: LOGGED-IN STUDENT ID CARD & ACCEPTANCE PORTAL -->
-            <div id="student-dashboard-panel" class="hidden p-6 sm:p-10">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 mb-8 border-b border-brand-light">
+            <div class="p-6 sm:p-10">
+                <p class="text-sm text-brand-secondary-dark mb-6">
+                    Thank you! Your student registration has been recorded by the Admissions Office at <strong class="text-brand-primary-dark" data-school-name>Baron-Bryan Institution of Computer Science and Engineering</strong>.
+                </p>
+
+                <div class="bg-slate-50 rounded-xl border border-brand-light p-6 grid grid-cols-1 sm:grid-cols-2 gap-y-5 gap-x-8 text-sm">
                     <div>
-                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold">
-                            <span class="w-2 h-2 rounded-full bg-emerald-600"></span>
-                            Admitted &bull; Active Enrollment
-                        </span>
-                        <h2 class="text-2xl font-bold text-brand-primary-dark mt-2">
-                            Welcome, <span id="dash-welcome-name">Student</span>!
-                        </h2>
+                        <span class="block text-xs font-semibold uppercase text-brand-secondary">Student Name</span>
+                        <span id="receipt-name" class="font-bold text-brand-primary-dark text-base mt-0.5 block">-</span>
                     </div>
-                    <button type="button" onclick="logoutStudent()" class="px-5 py-2.5 rounded-xl border border-brand-light text-sm font-semibold text-brand-secondary-dark hover:bg-slate-100 transition-colors self-start sm:self-auto">
-                        Sign Out
-                    </button>
+                    <div>
+                        <span class="block text-xs font-semibold uppercase text-brand-secondary">Entering Academic Level</span>
+                        <span id="receipt-grade" class="font-bold text-brand-primary-dark text-base mt-0.5 block">-</span>
+                    </div>
+                    <div>
+                        <span class="block text-xs font-semibold uppercase text-brand-secondary">Selected Concentration</span>
+                        <span id="receipt-track" class="font-bold text-brand-primary text-base mt-0.5 block">-</span>
+                    </div>
+                    <div>
+                        <span class="block text-xs font-semibold uppercase text-brand-secondary">Experience Tier</span>
+                        <span id="receipt-exp" class="font-medium text-brand-primary-dark mt-0.5 block">-</span>
+                    </div>
+                    <div>
+                        <span class="block text-xs font-semibold uppercase text-brand-secondary">Student Contact</span>
+                        <span id="receipt-contact" class="font-medium text-brand-primary-dark mt-0.5 block">-</span>
+                    </div>
+                    <div>
+                        <span class="block text-xs font-semibold uppercase text-brand-secondary">Guardian Contact</span>
+                        <span id="receipt-guardian" class="font-medium text-brand-primary-dark mt-0.5 block">-</span>
+                    </div>
+                    <div class="sm:col-span-2">
+                        <span class="block text-xs font-semibold uppercase text-brand-secondary">Co-Curricular Interests</span>
+                        <span id="receipt-clubs" class="font-medium text-brand-primary-dark mt-0.5 block">None selected</span>
+                    </div>
                 </div>
 
-                <!-- OFFICIAL DIGITAL STUDENT ID CARD -->
-                <div class="max-w-lg mx-auto">
-                    <div class="id-card-gradient rounded-2xl p-6 sm:p-8 text-white shadow-xl border border-white/15 relative overflow-hidden">
-                        <div class="hero-grid-pattern absolute inset-0 opacity-40 pointer-events-none"></div>
-                        
-                        <div class="relative z-10">
-                            <!-- ID Card Top Header -->
-                            <div class="flex items-center justify-between gap-3 pb-4 border-b border-white/15">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-10 h-10 rounded-lg bg-white/15 flex items-center justify-center font-extrabold text-sm tracking-wider">
-                                        BB
-                                    </div>
-                                    <div>
-                                        <div class="text-xs font-bold uppercase tracking-wider text-slate-200" data-school-short>BBICSE</div>
-                                        <div class="text-[11px] text-slate-300">Official Student Identification</div>
-                                    </div>
-                                </div>
-                                <span class="px-2.5 py-1 rounded bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 text-[11px] font-bold uppercase tracking-wider">
-                                    Active
-                                </span>
-                            </div>
-
-                            <!-- ID Card Body -->
-                            <div class="py-6 flex items-center gap-5">
-                                <!-- Generated Monogram Avatar -->
-                                <div id="id-card-avatar" class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-white text-slate-900 font-extrabold text-2xl sm:text-3xl flex items-center justify-center shrink-0 shadow-inner">
-                                    JT
-                                </div>
-                                <div class="min-w-0">
-                                    <div class="text-xs uppercase tracking-wider text-slate-300">Student Name</div>
-                                    <div id="id-card-name" class="text-xl sm:text-2xl font-extrabold truncate">Jordan Taylor</div>
-                                    <div id="id-card-major" class="text-sm text-slate-200 font-medium mt-0.5">Computer Science</div>
-                                </div>
-                            </div>
-
-                            <!-- ID Card Footer Details -->
-                            <div class="pt-4 border-t border-white/15 grid grid-cols-2 gap-4 text-xs">
-                                <div>
-                                    <span class="block text-slate-400 uppercase text-[10px] tracking-wider">Student ID Number</span>
-                                    <span id="id-card-number" class="font-mono-tech text-sm sm:text-base font-bold text-white tracking-wider">BB-2026-0000</span>
-                                </div>
-                                <div class="text-right">
-                                    <span class="block text-slate-400 uppercase text-[10px] tracking-wider">Class Cohort</span>
-                                    <span id="id-card-grad" class="font-bold text-sm text-white">Class of 2030</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mt-6 text-center">
-                        <button type="button" onclick="switchPortalTab('roster')" class="btn-brand-secondary px-6 py-3 rounded-xl text-sm font-semibold">
-                            View Your Name on the Live Class Roster &rarr;
+                <div class="mt-8 flex flex-wrap items-center justify-between gap-4 no-print">
+                    <button type="button" onclick="resetForNewStudent()" class="btn-brand-primary px-6 py-3 rounded-xl text-sm font-bold">
+                        + Register Another Student
+                    </button>
+                    <div class="flex items-center gap-3">
+                        <button type="button" onclick="window.print()" class="px-5 py-3 rounded-xl border border-brand-light text-sm font-semibold text-brand-secondary-dark hover:bg-slate-100 transition-colors">
+                            Print Receipt
+                        </button>
+                        <button type="button" onclick="toggleAdminModal(true)" class="btn-brand-secondary px-5 py-3 rounded-xl text-sm font-semibold">
+                            View All Registrations
                         </button>
                     </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- =====================================================================
-             TAB 3: LIVE REGISTERED STUDENTS ROSTER (PROJECTOR / BOARD VIEW)
-             ===================================================================== -->
-        <div id="view-roster" class="hidden bg-brand-surface rounded-b-2xl border border-brand-light shadow-md overflow-hidden">
-            <div class="bg-brand-primary px-6 sm:px-10 py-5 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                <div>
-                    <div class="flex items-center gap-2.5">
-                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                        <h2 class="text-lg sm:text-xl font-bold">Live Enrolled Students Roster</h2>
-                    </div>
-                    <p class="text-slate-300 text-xs sm:text-sm mt-0.5">Real-time directory of admitted students &bull; Automatically updates when peers register</p>
-                </div>
-                <div class="bg-white/15 px-4 py-2 rounded-xl text-sm font-bold">
-                    Enrolled Students: <span id="roster-banner-count" class="font-mono-tech text-emerald-300 ml-1">0</span>
-                </div>
-            </div>
-
-            <div class="p-6 sm:p-8">
-                <!-- Search / Filter Input -->
-                <div class="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                    <input type="text" id="roster-search" oninput="renderLiveRoster()" placeholder="Search roster by name, Student ID, or major..." class="brand-input w-full sm:max-w-sm px-4 py-2.5 rounded-xl text-sm">
-                    <span class="text-xs text-brand-secondary">
-                        Showing public directory details (emails &amp; passwords hidden for privacy)
-                    </span>
-                </div>
-
-                <!-- Responsive Roster Table -->
-                <div class="overflow-x-auto rounded-xl border border-brand-light">
-                    <table class="w-full text-left border-collapse">
-                        <thead>
-                            <tr class="bg-slate-100 border-b border-brand-light text-xs font-bold uppercase tracking-wider text-brand-secondary-dark">
-                                <th class="py-3.5 px-4">Student ID</th>
-                                <th class="py-3.5 px-4">Student Name</th>
-                                <th class="py-3.5 px-4">Academic Track / Major</th>
-                                <th class="py-3.5 px-4">Class</th>
-                                <th class="py-3.5 px-4 text-right">Enrolled</th>
-                            </tr>
-                        </thead>
-                        <tbody id="live-roster-tbody" class="divide-y divide-slate-200 text-sm">
-                            <tr>
-                                <td colspan="5" class="py-10 text-center text-brand-secondary">
-                                    Connecting to live admissions database...
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <!-- Presenter Controls Footer -->
-                <div class="mt-6 pt-4 border-t border-brand-light flex flex-wrap items-center justify-between gap-4">
-                    <button type="button" onclick="togglePresenterModal(true)" class="text-xs font-semibold text-brand-secondary hover:text-brand-primary flex items-center gap-1.5 transition-colors">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                        </svg>
-                        <span>Presenter Controls</span>
-                    </button>
-                    <button type="button" onclick="switchPortalTab('register')" class="text-xs font-bold text-brand-primary hover:underline">
-                        + Register a New Student
-                    </button>
                 </div>
             </div>
         </div>
@@ -535,77 +661,65 @@
     <!-- =========================================================================
          FOOTER
          ========================================================================= -->
-    <footer class="bg-brand-primary-dark text-slate-300 mt-12 border-t border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <footer class="bg-brand-primary-dark text-slate-300 mt-16 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
                 <div>
-                    <div class="font-bold text-white text-base sm:text-lg" data-school-name>
+                    <div class="font-bold text-white text-lg" data-school-name>
                         Baron-Bryan Institution of Computer Science and Engineering
                     </div>
-                    <p class="text-xs sm:text-sm text-slate-400 mt-1">
+                    <p class="text-sm text-slate-400 mt-1">
                         Office of Admissions &amp; Student Records &bull; Excellence in Computing &amp; Engineering
                     </p>
                 </div>
-                <div class="flex flex-wrap items-center gap-3 text-xs">
+                <div class="flex flex-wrap items-center gap-4 text-xs">
                     <button type="button" onclick="toggleThemeSandbox(true)" class="px-4 py-2 rounded-lg bg-white/10 hover:bg-white/15 text-slate-200 font-semibold border border-white/10 transition-colors">
-                        Customize Colors / Name Live
+                        Test Brand Colors / Name Live
                     </button>
                 </div>
             </div>
-            <div class="mt-6 pt-6 border-t border-white/10 text-xs text-slate-400 flex flex-col sm:flex-row justify-between gap-2">
-                <span>&copy; 2026 <span data-school-name>Baron-Bryan Institution of Computer Science and Engineering</span>.</span>
-                <span>Live QR Admissions Portal</span>
+            <div class="mt-8 pt-6 border-t border-white/10 text-xs text-slate-400 flex flex-col sm:flex-row justify-between gap-2">
+                <span>&copy; 2026 <span data-school-name>Baron-Bryan Institution of Computer Science and Engineering</span>. All rights reserved.</span>
+                <span>Project Registration Portal</span>
             </div>
         </div>
     </footer>
 
     <!-- =========================================================================
-         MODAL 1: PRESENTER CONTROLS (PIN-PROTECTED ROSTER MANAGEMENT)
+         MODAL 1: REGISTERED STUDENTS ROSTER (Demo Admin View)
          ========================================================================= -->
-    <div id="presenter-modal" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
-        <div class="bg-brand-surface rounded-2xl border border-brand-light max-w-md w-full shadow-2xl overflow-hidden">
+    <div id="admin-roster-modal" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-brand-surface rounded-2xl border border-brand-light max-w-3xl w-full max-h-[85vh] flex flex-col shadow-2xl overflow-hidden">
             <div class="bg-brand-primary px-6 py-4 text-white flex items-center justify-between">
-                <h3 class="font-bold text-base">Presenter &amp; Admissions Controls</h3>
-                <button type="button" onclick="togglePresenterModal(false)" class="p-1 rounded-lg hover:bg-white/10 text-white">
+                <div>
+                    <h3 class="font-bold text-lg">Submitted Student Registrations</h3>
+                    <p class="text-xs text-slate-300">Saved locally in your browser for project demonstration</p>
+                </div>
+                <button type="button" onclick="toggleAdminModal(false)" class="p-1.5 rounded-lg hover:bg-white/10 text-white">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </button>
             </div>
-            <div class="p-6 space-y-4 text-sm">
-                <p class="text-xs text-brand-secondary">
-                    Enter your Presenter Admin PIN (configured in <code class="font-mono-tech">SCHOOL_CONFIG.adminPin</code>) to clear test registrations or view the active student invite code.
-                </p>
-                <div>
-                    <label for="presenter-pin-input" class="block font-semibold text-brand-primary-dark mb-1">Admin PIN</label>
-                    <input type="password" id="presenter-pin-input" placeholder="Enter Admin PIN" class="brand-input w-full px-3.5 py-2.5 rounded-xl text-sm">
-                    <p id="presenter-pin-error" class="hidden text-xs text-red-600 mt-1">Incorrect Admin PIN.</p>
-                </div>
 
-                <div id="presenter-unlocked-actions" class="hidden pt-3 border-t border-brand-light space-y-3">
-                    <div class="p-3 rounded-xl bg-brand-primary-tint text-xs">
-                        <span class="font-semibold text-brand-secondary-dark block">Active Student Invite Code:</span>
-                        <span id="display-active-invite-code" class="font-mono-tech text-base font-extrabold text-brand-primary tracking-wider">BBICSE2026</span>
-                    </div>
-                    <button type="button" id="clear-roster-btn" onclick="clearFirebaseRoster()" class="w-full py-2.5 px-4 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs transition-colors">
-                        Delete All Roster Entries (Reset Before Class)
-                    </button>
-                </div>
+            <div id="roster-list-container" class="p-6 overflow-y-auto flex-grow space-y-3">
+                <!-- Populated dynamically via JS -->
+            </div>
 
-                <div class="pt-2 flex justify-end gap-2">
-                    <button type="button" onclick="togglePresenterModal(false)" class="px-4 py-2 rounded-xl border border-brand-light text-xs font-semibold text-brand-secondary-dark">
-                        Close
-                    </button>
-                    <button type="button" id="unlock-presenter-btn" onclick="verifyPresenterPin()" class="btn-brand-primary px-4 py-2 rounded-xl text-xs font-semibold">
-                        Unlock Controls
-                    </button>
-                </div>
+            <div class="px-6 py-4 bg-slate-50 border-t border-brand-light flex justify-between items-center">
+                <button type="button" onclick="clearAllRegistrations()" class="text-xs font-semibold text-red-600 hover:underline">
+                    Clear Roster Data
+                </button>
+                <button type="button" onclick="toggleAdminModal(false)" class="btn-brand-primary px-5 py-2 rounded-lg text-sm font-semibold">
+                    Close
+                </button>
             </div>
         </div>
     </div>
 
     <!-- =========================================================================
          MODAL 2: LIVE BRANDING PREVIEW SANDBOX
+         Allows testing different colors, school names, or logo text live!
          ========================================================================= -->
     <div id="theme-sandbox-modal" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
         <div class="bg-brand-surface rounded-2xl border border-brand-light max-w-md w-full shadow-2xl overflow-hidden">
@@ -619,7 +733,7 @@
             </div>
             <div class="p-6 space-y-4 text-sm">
                 <p class="text-xs text-brand-secondary">
-                    Preview updated school colors or names live before changing the permanent values at the top of the file.
+                    Test how your site looks with updated colors or names before editing the permanent variables at the top of the HTML file.
                 </p>
                 <div>
                     <label class="block font-semibold text-brand-primary-dark mb-1">School Name</label>
@@ -628,11 +742,11 @@
                 <div class="grid grid-cols-2 gap-4">
                     <div>
                         <label class="block font-semibold text-brand-primary-dark mb-1">Primary Color (Navy)</label>
-                        <input type="color" id="sandbox-primary-color" value="#0f2547" class="w-full h-10 rounded-lg cursor-pointer border border-brand-light">
+                        <input type="color" id="sandbox-primary-color" value="#0f2544" class="w-full h-10 rounded-lg cursor-pointer border border-brand-light">
                     </div>
                     <div>
                         <label class="block font-semibold text-brand-primary-dark mb-1">Secondary Color (Gray)</label>
-                        <input type="color" id="sandbox-secondary-color" value="#64748b" class="w-full h-10 rounded-lg cursor-pointer border border-brand-light">
+                        <input type="color" id="sandbox-secondary-color" value="#334155" class="w-full h-10 rounded-lg cursor-pointer border border-brand-light">
                     </div>
                 </div>
                 <div class="pt-3 flex justify-end gap-2">
@@ -648,414 +762,320 @@
     </div>
 
     <!-- =========================================================================
-         FIREBASE REAL-TIME DATABASE & PORTAL APPLICATION LOGIC
+         SECTION 2: CENTRALIZED JAVASCRIPT CONFIGURATION & APPLICATION LOGIC
+         Edit SCHOOL_CONFIG below to update the school name, acronym, or logo!
          ========================================================================= -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, collection, addDoc, onSnapshot, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-
+    <script>
         /**
          * =========================================================================
-         * EASY SCHOOL BRANDING & ACCESS CONFIGURATION
-         * Edit these values anytime to change your school name, logo, or codes!
+         * EASY SCHOOL BRANDING CONFIGURATION
+         * Change the values in SCHOOL_CONFIG below to update the entire site.
          * =========================================================================
          */
         const SCHOOL_CONFIG = {
             fullName: "Baron-Bryan Institution of Computer Science and Engineering",
-            shortName: "BBICSE",
+            shortName: "Baron-Bryan",
+            acronym: "BBICSE",
             idPrefix: "BB-2026",
 
-            // LOGO SETTINGS (Currently undecided placeholder):
-            // Set logoMode to "image" and paste your image path into logoImageUrl when ready.
-            logoMode: "placeholder", 
-            logoImageUrl: "",
-
-            // SECRET REGISTRATION INVITE CODE:
-            // Share ONLY this code with people you want to allow to register!
-            inviteCode: "BBICSE2026",
-
-            // PRESENTER ADMIN PIN:
-            // Used to unlock Presenter Controls on the Live Roster tab to reset demo entries.
-            adminPin: "ADMIN2026"
+            // LOGO CONFIGURATION (Currently undecided placeholder):
+            // Option A: Keep 'svg' mode for the clean academic crest icon.
+            // Option B: Change mode to 'image' and set imageUrl to your logo file path (e.g., "logo.png").
+            // Option C: Change mode to 'initials' to show a monogram like "BB".
+            logoMode: "svg", 
+            logoImageUrl: "", 
+            logoInitials: "BB"
         };
 
-        // Global State
-        let db = null;
-        let auth = null;
-        let currentUser = null;
-        let allStudents = [];
-        let loggedInStudent = null;
-        const appId = typeof __app_id !== "undefined" ? __app_id : "default-app-id";
+        // Storage key for saving demo registrations in browser localStorage
+        const STORAGE_KEY = "bbicse_registrations_v1";
 
         /**
-         * Applies SCHOOL_CONFIG branding across the page
+         * Applies SCHOOL_CONFIG values across the DOM on page load
          */
         function applySchoolConfig() {
-            document.title = `Admissions Portal | ${SCHOOL_CONFIG.fullName}`;
+            document.title = `Student Registration | ${SCHOOL_CONFIG.fullName}`;
+            
             document.querySelectorAll("[data-school-name]").forEach(el => {
                 el.textContent = SCHOOL_CONFIG.fullName;
             });
+
             document.querySelectorAll("[data-school-short]").forEach(el => {
                 el.textContent = SCHOOL_CONFIG.shortName;
             });
 
             const logoSlot = document.getElementById("school-logo-slot");
-            if (logoSlot && SCHOOL_CONFIG.logoMode === "image" && SCHOOL_CONFIG.logoImageUrl) {
-                logoSlot.innerHTML = `<img src="${SCHOOL_CONFIG.logoImageUrl}" alt="${SCHOOL_CONFIG.shortName} Logo" class="w-full h-full object-contain rounded-xl">`;
+            if (logoSlot) {
+                if (SCHOOL_CONFIG.logoMode === "image" && SCHOOL_CONFIG.logoImageUrl) {
+                    logoSlot.innerHTML = `<img src="${SCHOOL_CONFIG.logoImageUrl}" alt="${SCHOOL_CONFIG.acronym} Logo" class="w-full h-full object-contain rounded-xl">`;
+                } else if (SCHOOL_CONFIG.logoMode === "initials") {
+                    logoSlot.innerHTML = `<span class="font-extrabold text-lg tracking-wider">${SCHOOL_CONFIG.logoInitials}</span>`;
+                }
+                // Default 'svg' keeps the built-in academic crest SVG
             }
 
-            const sandboxInput = document.getElementById("sandbox-name-input");
-            if (sandboxInput) sandboxInput.value = SCHOOL_CONFIG.fullName;
-            const inviteDisplay = document.getElementById("display-active-invite-code");
-            if (inviteDisplay) inviteDisplay.textContent = SCHOOL_CONFIG.inviteCode;
+            // Sync sandbox input
+            const sandboxNameInput = document.getElementById("sandbox-name-input");
+            if (sandboxNameInput) sandboxNameInput.value = SCHOOL_CONFIG.fullName;
         }
 
         /**
-         * Initializes Firebase Auth & Real-Time Firestore Listener
+         * Smoothly selects an Academic Track card and scrolls down to the form
          */
-        async function initFirebasePortal() {
+        function selectTrackAndScroll(trackName) {
+            const trackSelect = document.getElementById("academicTrack");
+            const formContainer = document.getElementById("registration-form-container");
+            const receiptContainer = document.getElementById("receipt-printable");
+
+            // Ensure form is visible if user was viewing a receipt
+            receiptContainer.classList.add("hidden");
+            formContainer.classList.remove("hidden");
+
+            trackSelect.value = trackName;
+            trackSelect.classList.remove("input-error");
+            
+            document.getElementById("register").scrollIntoView({ behavior: "smooth" });
+            setTimeout(() => trackSelect.focus(), 450);
+        }
+
+        /**
+         * Helper to clear all validation error highlights
+         */
+        function clearErrors() {
+            document.getElementById("form-error-banner").classList.add("hidden");
+            document.getElementById("terms-error").classList.add("hidden");
+            document.querySelectorAll(".brand-input").forEach(input => {
+                input.classList.remove("input-error");
+            });
+            document.querySelectorAll(".error-msg").forEach(msg => {
+                msg.classList.add("hidden");
+            });
+        }
+
+        /**
+         * Validates form inputs and returns true if valid
+         */
+        function validateForm() {
+            clearErrors();
+            let isValid = true;
+
+            const requiredFields = [
+                "firstName",
+                "lastName",
+                "dob",
+                "gradeLevel",
+                "studentEmail",
+                "studentPhone",
+                "academicTrack",
+                "experienceLevel",
+                "guardianName",
+                "guardianRelation",
+                "guardianContact"
+            ];
+
+            requiredFields.forEach(fieldId => {
+                const field = document.getElementById(fieldId);
+                const errorText = field.parentElement.querySelector(".error-msg");
+                const value = field.value.trim();
+
+                let fieldValid = value !== "";
+                if (fieldId === "studentEmail" && fieldValid) {
+                    fieldValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+                }
+
+                if (!fieldValid) {
+                    isValid = false;
+                    field.classList.add("input-error");
+                    if (errorText) errorText.classList.remove("hidden");
+                }
+            });
+
+            const termsCheckbox = document.getElementById("termsAgree");
+            if (!termsCheckbox.checked) {
+                isValid = false;
+                document.getElementById("terms-error").classList.remove("hidden");
+            }
+
+            if (!isValid) {
+                const banner = document.getElementById("form-error-banner");
+                banner.classList.remove("hidden");
+                banner.scrollIntoView({ behavior: "smooth", block: "center" });
+            }
+
+            return isValid;
+        }
+
+        /**
+         * Retrieves saved registrations from localStorage
+         */
+        function getSavedRegistrations() {
             try {
-                const firebaseConfig = JSON.parse(__firebase_config);
-                const app = initializeApp(firebaseConfig);
-                auth = getAuth(app);
-                db = getFirestore(app);
-
-                if (typeof __initial_auth_token !== "undefined" && __initial_auth_token) {
-                    await signInWithCustomToken(auth, __initial_auth_token);
-                } else {
-                    await signInAnonymously(auth);
-                }
-                currentUser = auth.currentUser;
-
-                if (currentUser) {
-                    subscribeToLiveRoster();
-                }
-            } catch (err) {
-                console.error("Firebase initialization error:", err);
-                const tbody = document.getElementById("live-roster-tbody");
-                if (tbody) {
-                    tbody.innerHTML = `<tr><td colspan="5" class="py-8 text-center text-red-600 text-xs">Unable to connect to live database. Please refresh the page.</td></tr>`;
-                }
+                return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+            } catch (e) {
+                return [];
             }
         }
 
         /**
-         * Subscribes to real-time updates on the public students collection
+         * Updates the roster badge counters in the header
          */
-        function subscribeToLiveRoster() {
-            if (!currentUser || !db) return;
-            const studentsRef = collection(db, "artifacts", appId, "public", "data", "students");
-
-            onSnapshot(studentsRef, (snapshot) => {
-                const fetched = [];
-                snapshot.forEach((docSnap) => {
-                    fetched.push({ docId: docSnap.id, ...docSnap.data() });
-                });
-
-                // Sort newest enrollments first in memory
-                fetched.sort((a, b) => (b.createdAtMs || 0) - (a.createdAtMs || 0));
-                allStudents = fetched;
-
-                // Update all live counters
-                const count = allStudents.length;
-                document.getElementById("header-roster-count").textContent = count;
-                document.getElementById("hero-roster-count").textContent = count;
-                document.getElementById("tab-roster-count").textContent = count;
-                document.getElementById("roster-banner-count").textContent = count;
-
-                window.renderLiveRoster();
-            }, (error) => {
-                console.error("Roster snapshot error:", error);
-            });
+        function updateRosterCount() {
+            const count = getSavedRegistrations().length;
+            document.getElementById("roster-count-badge").textContent = count;
+            document.getElementById("roster-count-badge-mobile").textContent = count;
         }
 
         /**
-         * Renders the Live Roster table with search filtering
+         * Handles Form Submission
          */
-        window.renderLiveRoster = function() {
-            const tbody = document.getElementById("live-roster-tbody");
-            const searchQuery = (document.getElementById("roster-search")?.value || "").trim().toLowerCase();
+        document.getElementById("student-registration-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            if (!validateForm()) return;
 
-            const filtered = allStudents.filter(st => {
-                if (!searchQuery) return true;
-                return (
-                    (st.fullName || "").toLowerCase().includes(searchQuery) ||
-                    (st.studentId || "").toLowerCase().includes(searchQuery) ||
-                    (st.major || "").toLowerCase().includes(searchQuery)
-                );
-            });
+            // Gather checked clubs
+            const selectedClubs = Array.from(document.querySelectorAll('input[name="clubs"]:checked'))
+                .map(cb => cb.value);
 
-            if (filtered.length === 0) {
-                tbody.innerHTML = `
-                    <tr>
-                        <td colspan="5" class="py-10 text-center text-brand-secondary">
-                            ${allStudents.length === 0 
-                                ? "No students registered yet. Scan the QR code and enter the invite code to be the first!" 
-                                : "No matching students found."}
-                        </td>
-                    </tr>
-                `;
-                return;
-            }
+            // Generate a unique Student Application ID
+            const randomNum = Math.floor(1000 + Math.random() * 9000);
+            const appId = `${SCHOOL_CONFIG.idPrefix}-${randomNum}`;
 
-            tbody.innerHTML = filtered.map(st => `
-                <tr class="hover:bg-slate-50 transition-colors">
-                    <td class="py-3.5 px-4 font-mono-tech text-xs font-bold text-brand-primary whitespace-nowrap">
-                        <span class="px-2.5 py-1 rounded-md bg-brand-primary-tint">${escapeHtml(st.studentId)}</span>
-                    </td>
-                    <td class="py-3.5 px-4 font-bold text-brand-primary-dark whitespace-nowrap">
-                        ${escapeHtml(st.fullName)}
-                    </td>
-                    <td class="py-3.5 px-4 text-brand-secondary-dark font-medium">
-                        ${escapeHtml(st.major)}
-                    </td>
-                    <td class="py-3.5 px-4 text-brand-secondary text-xs whitespace-nowrap">
-                        Class of ${escapeHtml(st.gradYear)}
-                    </td>
-                    <td class="py-3.5 px-4 text-right text-xs text-brand-secondary whitespace-nowrap">
-                        ${escapeHtml(st.enrolledTime || "Just now")}
-                    </td>
-                </tr>
-            `).join("");
-        };
+            const registrationRecord = {
+                id: appId,
+                submittedAt: new Date().toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }),
+                firstName: document.getElementById("firstName").value.trim(),
+                lastName: document.getElementById("lastName").value.trim(),
+                dob: document.getElementById("dob").value,
+                gradeLevel: document.getElementById("gradeLevel").value,
+                studentEmail: document.getElementById("studentEmail").value.trim(),
+                studentPhone: document.getElementById("studentPhone").value.trim(),
+                academicTrack: document.getElementById("academicTrack").value,
+                experienceLevel: document.getElementById("experienceLevel").value,
+                clubs: selectedClubs,
+                guardianName: document.getElementById("guardianName").value.trim(),
+                guardianRelation: document.getElementById("guardianRelation").value,
+                guardianContact: document.getElementById("guardianContact").value.trim()
+            };
 
-        /**
-         * Switches between the 3 main tabs: 'register', 'login', 'roster'
-         */
-        window.switchPortalTab = function(tabName) {
-            const views = ["register", "login", "roster"];
-            views.forEach(v => {
-                const viewEl = document.getElementById(`view-${v}`);
-                const btnEl = document.getElementById(`tab-btn-${v}`);
-                if (v === tabName) {
-                    viewEl.classList.remove("hidden");
-                    btnEl.classList.add("active-tab");
-                } else {
-                    viewEl.classList.add("hidden");
-                    btnEl.classList.remove("active-tab");
-                }
-            });
-            document.getElementById("portal-main").scrollIntoView({ behavior: "smooth", block: "nearest" });
-        };
+            // Save to localStorage for Roster view
+            const existing = getSavedRegistrations();
+            existing.unshift(registrationRecord);
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(existing));
+            updateRosterCount();
 
-        /**
-         * Handles New Student Registration (Invite-Code Gated)
-         */
-        document.getElementById("student-registration-form").addEventListener("submit", async (e) => {
-            e.preventDefault();
-            const alertBanner = document.getElementById("reg-alert-banner");
-            const alertText = document.getElementById("reg-alert-text");
-            const submitBtn = document.getElementById("reg-submit-btn");
+            // Populate Confirmation Receipt
+            document.getElementById("receipt-app-id").textContent = registrationRecord.id;
+            document.getElementById("receipt-name").textContent = `${registrationRecord.firstName} ${registrationRecord.lastName}`;
+            document.getElementById("receipt-grade").textContent = registrationRecord.gradeLevel;
+            document.getElementById("receipt-track").textContent = registrationRecord.academicTrack;
+            document.getElementById("receipt-exp").textContent = registrationRecord.experienceLevel;
+            document.getElementById("receipt-contact").textContent = `${registrationRecord.studentEmail} • ${registrationRecord.studentPhone}`;
+            document.getElementById("receipt-guardian").textContent = `${registrationRecord.guardianName} (${registrationRecord.guardianRelation}) • ${registrationRecord.guardianContact}`;
+            document.getElementById("receipt-clubs").textContent = registrationRecord.clubs.length > 0 
+                ? registrationRecord.clubs.join(", ") 
+                : "None selected";
 
-            alertBanner.classList.add("hidden");
-
-            const enteredCode = document.getElementById("inviteCodeInput").value.trim().toUpperCase();
-            const fullName = document.getElementById("regFullName").value.trim();
-            const email = document.getElementById("regEmail").value.trim().toLowerCase();
-            const password = document.getElementById("regPassword").value;
-            const major = document.getElementById("regMajor").value;
-            const gradYear = document.getElementById("regGradYear").value;
-
-            // 1. Validate Invite Code Gate
-            if (enteredCode !== SCHOOL_CONFIG.inviteCode.toUpperCase()) {
-                alertBanner.className = "rounded-xl bg-red-50 border border-red-200 p-4 text-red-800 text-sm flex items-start gap-3";
-                alertText.textContent = "Invalid Invite Code. Please obtain an official access code from admissions.";
-                alertBanner.classList.remove("hidden");
-                document.getElementById("inviteCodeInput").focus();
-                return;
-            }
-
-            // 2. Validate Required Fields
-            if (!fullName || !email || !password || !major) {
-                alertBanner.className = "rounded-xl bg-red-50 border border-red-200 p-4 text-red-800 text-sm flex items-start gap-3";
-                alertText.textContent = "Please complete all required registration fields.";
-                alertBanner.classList.remove("hidden");
-                return;
-            }
-
-            if (password.length < 4) {
-                alertBanner.className = "rounded-xl bg-red-50 border border-red-200 p-4 text-red-800 text-sm flex items-start gap-3";
-                alertText.textContent = "Please choose a password with at least 4 characters.";
-                alertBanner.classList.remove("hidden");
-                return;
-            }
-
-            // 3. Check if Email Already Exists
-            const duplicate = allStudents.find(s => (s.email || "").toLowerCase() === email);
-            if (duplicate) {
-                alertBanner.className = "rounded-xl bg-amber-50 border border-amber-200 p-4 text-amber-900 text-sm flex items-start gap-3";
-                alertText.textContent = "An account with this email is already registered. Please switch to the Student Login tab to sign in.";
-                alertBanner.classList.remove("hidden");
-                return;
-            }
-
-            if (!currentUser || !db) {
-                alertBanner.className = "rounded-xl bg-red-50 border border-red-200 p-4 text-red-800 text-sm flex items-start gap-3";
-                alertText.textContent = "Connecting to admissions server... Please try clicking submit again in a moment.";
-                alertBanner.classList.remove("hidden");
-                return;
-            }
-
-            // 4. Generate Unique Student ID & Save to Firestore
-            submitBtn.disabled = true;
-            submitBtn.textContent = "Enrolling Student...";
-
-            try {
-                const randomDigits = Math.floor(1000 + Math.random() * 9000);
-                const studentId = `${SCHOOL_CONFIG.idPrefix}-${randomDigits}`;
-                const now = new Date();
-                const enrolledTime = now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
-
-                const newStudent = {
-                    studentId,
-                    fullName,
-                    email,
-                    password,
-                    major,
-                    gradYear,
-                    enrolledTime,
-                    createdAtMs: Date.now()
-                };
-
-                const studentsRef = collection(db, "artifacts", appId, "public", "data", "students");
-                await addDoc(studentsRef, newStudent);
-
-                // Reset form & automatically log student into their ID card portal
-                document.getElementById("student-registration-form").reset();
-                openStudentDashboard(newStudent);
-                window.switchPortalTab("login");
-            } catch (err) {
-                console.error("Registration error:", err);
-                alertBanner.className = "rounded-xl bg-red-50 border border-red-200 p-4 text-red-800 text-sm flex items-start gap-3";
-                alertText.textContent = "Error saving registration. Please try again.";
-                alertBanner.classList.remove("hidden");
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = `<span>Verify Code &amp; Complete Registration</span><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>`;
-            }
+            // Switch view from Form to Receipt
+            document.getElementById("registration-form-container").classList.add("hidden");
+            document.getElementById("receipt-printable").classList.remove("hidden");
+            document.getElementById("register").scrollIntoView({ behavior: "smooth" });
         });
 
         /**
-         * Handles Existing Student Login
+         * Resets the UI so another student can register
          */
-        document.getElementById("student-login-form").addEventListener("submit", (e) => {
-            e.preventDefault();
-            const alertBanner = document.getElementById("login-alert-banner");
-            const alertText = document.getElementById("login-alert-text");
-            alertBanner.classList.add("hidden");
-
-            const email = document.getElementById("loginEmail").value.trim().toLowerCase();
-            const password = document.getElementById("loginPassword").value;
-
-            const matchedStudent = allStudents.find(
-                s => (s.email || "").toLowerCase() === email && s.password === password
-            );
-
-            if (!matchedStudent) {
-                alertText.textContent = "Invalid email or password. Make sure you have registered with an official Invite Code first.";
-                alertBanner.classList.remove("hidden");
-                return;
-            }
-
-            document.getElementById("student-login-form").reset();
-            openStudentDashboard(matchedStudent);
-        });
-
-        /**
-         * Displays the Logged-In Official Student ID Card & Acceptance Portal
-         */
-        function openStudentDashboard(student) {
-            loggedInStudent = student;
-
-            // Generate 2-letter initials for avatar
-            const parts = (student.fullName || "ST").trim().split(/\s+/);
-            const initials = parts.length > 1 
-                ? (parts[0][0] + parts[parts.length - 1][0]).toUpperCase() 
-                : parts[0].slice(0, 2).toUpperCase();
-
-            document.getElementById("dash-welcome-name").textContent = student.fullName;
-            document.getElementById("id-card-avatar").textContent = initials;
-            document.getElementById("id-card-name").textContent = student.fullName;
-            document.getElementById("id-card-major").textContent = student.major;
-            document.getElementById("id-card-number").textContent = student.studentId;
-            document.getElementById("id-card-grad").textContent = `Class of ${student.gradYear}`;
-
-            document.getElementById("login-form-panel").classList.add("hidden");
-            document.getElementById("student-dashboard-panel").classList.remove("hidden");
-            document.getElementById("login-tab-label").textContent = "My Student ID";
-            document.getElementById("header-auth-btn").textContent = "My Student ID";
+        function resetForNewStudent() {
+            document.getElementById("student-registration-form").reset();
+            clearErrors();
+            document.getElementById("receipt-printable").classList.add("hidden");
+            document.getElementById("registration-form-container").classList.remove("hidden");
+            document.getElementById("register").scrollIntoView({ behavior: "smooth" });
         }
 
         /**
-         * Logs out the current student
+         * Auto-fills sample data for quick testing/demonstration
          */
-        window.logoutStudent = function() {
-            loggedInStudent = null;
-            document.getElementById("student-dashboard-panel").classList.add("hidden");
-            document.getElementById("login-form-panel").classList.remove("hidden");
-            document.getElementById("login-tab-label").textContent = "Student Login";
-            document.getElementById("header-auth-btn").textContent = "Student Login";
-        };
+        function fillDemoData() {
+            clearErrors();
+            document.getElementById("firstName").value = "Alex";
+            document.getElementById("lastName").value = "Mercer";
+            document.getElementById("dob").value = "2009-05-14";
+            document.getElementById("gradeLevel").value = "Grade 10 (Sophomore)";
+            document.getElementById("studentEmail").value = "alex.mercer@student-demo.edu";
+            document.getElementById("studentPhone").value = "(555) 392-8410";
+            document.getElementById("academicTrack").value = "Software Engineering & AI";
+            document.getElementById("experienceLevel").value = "Intermediate (Some classes or personal projects)";
+            document.getElementById("guardianName").value = "Elena Mercer";
+            document.getElementById("guardianRelation").value = "Parent";
+            document.getElementById("guardianContact").value = "(555) 392-8411";
+            document.getElementById("termsAgree").checked = true;
+        }
 
         /**
-         * Presenter Controls Modal & Reset Functions
+         * Opens/Closes the Registered Students Roster Modal
          */
-        window.togglePresenterModal = function(show) {
-            const modal = document.getElementById("presenter-modal");
+        function toggleAdminModal(show) {
+            const modal = document.getElementById("admin-roster-modal");
             if (show) {
-                document.getElementById("presenter-pin-input").value = "";
-                document.getElementById("presenter-pin-error").classList.add("hidden");
-                document.getElementById("presenter-unlocked-actions").classList.add("hidden");
-                document.getElementById("unlock-presenter-btn").classList.remove("hidden");
+                renderRosterList();
                 modal.classList.remove("hidden");
             } else {
                 modal.classList.add("hidden");
             }
-        };
-
-        window.verifyPresenterPin = function() {
-            const pin = document.getElementById("presenter-pin-input").value.trim();
-            const errEl = document.getElementById("presenter-pin-error");
-            if (pin === SCHOOL_CONFIG.adminPin) {
-                errEl.classList.add("hidden");
-                document.getElementById("presenter-unlocked-actions").classList.remove("hidden");
-                document.getElementById("unlock-presenter-btn").classList.add("hidden");
-            } else {
-                errEl.classList.remove("hidden");
-            }
-        };
-
-        window.clearFirebaseRoster = async function() {
-            if (!currentUser || !db) return;
-            const btn = document.getElementById("clear-roster-btn");
-            btn.disabled = true;
-            btn.textContent = "Clearing Roster...";
-            try {
-                const deletePromises = allStudents.map(st => 
-                    deleteDoc(doc(db, "artifacts", appId, "public", "data", "students", st.docId))
-                );
-                await Promise.all(deletePromises);
-                window.logoutStudent();
-                window.togglePresenterModal(false);
-            } catch (err) {
-                console.error("Failed to clear roster:", err);
-            } finally {
-                btn.disabled = false;
-                btn.textContent = "Delete All Roster Entries (Reset Before Class)";
-            }
-        };
+        }
 
         /**
-         * Live Branding Preview Sandbox
+         * Renders saved student registrations inside the Roster modal
          */
-        window.toggleThemeSandbox = function(show) {
+        function renderRosterList() {
+            const container = document.getElementById("roster-list-container");
+            const records = getSavedRegistrations();
+
+            if (records.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-10 text-brand-secondary">
+                        <p class="font-semibold text-brand-primary-dark">No student registrations recorded yet.</p>
+                        <p class="text-xs mt-1">Complete the registration form to see entries appear here.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = records.map(rec => `
+                <div class="p-4 rounded-xl border border-brand-light bg-slate-50 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="font-mono-tech text-xs font-bold px-2 py-0.5 rounded bg-brand-primary text-white">${rec.id}</span>
+                            <span class="font-bold text-brand-primary-dark">${rec.firstName} ${rec.lastName}</span>
+                        </div>
+                        <div class="text-xs text-brand-secondary mt-1">
+                            <strong>${rec.academicTrack}</strong> &bull; ${rec.gradeLevel} &bull; ${rec.studentEmail}
+                        </div>
+                    </div>
+                    <div class="text-xs text-brand-secondary sm:text-right">
+                        <div>Registered: ${rec.submittedAt}</div>
+                        <div>Guardian: ${rec.guardianName}</div>
+                    </div>
+                </div>
+            `).join("");
+        }
+
+        function clearAllRegistrations() {
+            localStorage.removeItem(STORAGE_KEY);
+            updateRosterCount();
+            renderRosterList();
+        }
+
+        /**
+         * Live Theme Sandbox Functions (for testing colors/names in the browser)
+         */
+        function toggleThemeSandbox(show) {
             const modal = document.getElementById("theme-sandbox-modal");
             if (show) modal.classList.remove("hidden");
             else modal.classList.add("hidden");
-        };
+        }
 
-        window.applySandboxBranding = function() {
+        function applySandboxBranding() {
             const newName = document.getElementById("sandbox-name-input").value.trim();
             const newPrimary = document.getElementById("sandbox-primary-color").value;
             const newSecondary = document.getElementById("sandbox-secondary-color").value;
@@ -1065,31 +1085,25 @@
             }
             document.documentElement.style.setProperty("--color-primary", newPrimary);
             document.documentElement.style.setProperty("--color-primary-dark", newPrimary);
-            document.documentElement.style.setProperty("--color-secondary", newSecondary);
-            window.toggleThemeSandbox(false);
-        };
-
-        window.resetBranding = function() {
-            document.documentElement.style.removeProperty("--color-primary");
-            document.documentElement.style.removeProperty("--color-primary-dark");
-            document.documentElement.style.removeProperty("--color-secondary");
-            document.getElementById("sandbox-primary-color").value = "#0f2547";
-            document.getElementById("sandbox-secondary-color").value = "#64748b";
-            applySchoolConfig();
-            window.toggleThemeSandbox(false);
-        };
-
-        function escapeHtml(str) {
-            return String(str || "")
-                .replace(/&/g, "&amp;")
-                .replace(/</g, "&lt;")
-                .replace(/>/g, "&gt;")
-                .replace(/"/g, "&quot;");
+            document.documentElement.style.setProperty("--color-secondary-dark", newSecondary);
+            toggleThemeSandbox(false);
         }
 
-        // Initialize Configuration & Firebase on Load
-        applySchoolConfig();
-        initFirebasePortal();
+        function resetBranding() {
+            document.documentElement.style.removeProperty("--color-primary");
+            document.documentElement.style.removeProperty("--color-primary-dark");
+            document.documentElement.style.removeProperty("--color-secondary-dark");
+            document.getElementById("sandbox-primary-color").value = "#0f2544";
+            document.getElementById("sandbox-secondary-color").value = "#334155";
+            applySchoolConfig();
+            toggleThemeSandbox(false);
+        }
+
+        // Initialize on load
+        window.addEventListener("DOMContentLoaded", () => {
+            applySchoolConfig();
+            updateRosterCount();
+        });
     </script>
 </body>
 </html>
