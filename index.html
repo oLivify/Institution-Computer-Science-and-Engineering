@@ -210,7 +210,7 @@
                 </h1>
 
                 <p class="text-base sm:text-lg text-slate-300 leading-relaxed mb-8 max-w-2xl">
-                    Welcome to the official student registration portal for the <strong class="text-white font-semibold" data-school-name>Baron-Bryan Institution of Computer Science and Engineering</strong>. Complete your enrollment below to select your technical concentration and reserve your placement.
+                    Welcome to the official student registration portal for the <strong class="text-white font-semibold" data-school-name>Baron-Bryan Institution of Computer Science and Engineering</strong>. Complete your enrollment below to select your classes and reserve your placement.
                 </p>
 
                 <div class="flex flex-wrap items-center gap-4">
@@ -247,20 +247,20 @@
     <!-- =========================================================================
          ACADEMIC TRACKS / DEPARTMENTS SECTION
          ========================================================================= -->
-    <section id="programs" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- <section id="programs" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
             <div>
                 <span class="text-xs font-bold uppercase tracking-widest text-brand-secondary">Curriculum Overview</span>
                 <h2 class="text-2xl sm:text-3xl font-bold text-brand-primary-dark mt-1">Academic Tracks &amp; Concentrations</h2>
             </div>
             <p class="text-sm text-brand-secondary max-w-md">
-                Applicants choose one primary focus area during registration. Click any track below to pre-select it on your registration form.
+                Explore the academic departments and browse the classes available for registration.
             </p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <!-- Track Card 1 -->
-            <div onclick="selectTrackAndScroll('Software Engineering & AI')" class="bg-brand-surface rounded-2xl p-6 border border-brand-light shadow-sm hover:shadow-md hover:border-brand-primary transition-all cursor-pointer group flex flex-col justify-between">
+            Track Card 1 -->
+            <!-- <div onclick="selectTrackAndScroll('Software Engineering & AI')" class="bg-brand-surface rounded-2xl p-6 border border-brand-light shadow-sm hover:shadow-md hover:border-brand-primary transition-all cursor-pointer group flex flex-col justify-between">
                 <div>
                     <div class="w-11 h-11 rounded-xl bg-brand-primary-tint text-brand-primary flex items-center justify-center mb-4 group-hover:scale-105 transition-transform">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -277,10 +277,10 @@
                     <span>Select Track</span>
                     <span>&rarr;</span>
                 </div>
-            </div>
+            </div> -->
 
             <!-- Track Card 2 -->
-            <div onclick="selectTrackAndScroll('Cybersecurity & Network Defense')" class="bg-brand-surface rounded-2xl p-6 border border-brand-light shadow-sm hover:shadow-md hover:border-brand-primary transition-all cursor-pointer group flex flex-col justify-between">
+            <!-- <div onclick="selectTrackAndScroll('Cybersecurity & Network Defense')" class="bg-brand-surface rounded-2xl p-6 border border-brand-light shadow-sm hover:shadow-md hover:border-brand-primary transition-all cursor-pointer group flex flex-col justify-between">
                 <div>
                     <div class="w-11 h-11 rounded-xl bg-brand-primary-tint text-brand-primary flex items-center justify-center mb-4 group-hover:scale-105 transition-transform">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -297,10 +297,10 @@
                     <span>Select Track</span>
                     <span>&rarr;</span>
                 </div>
-            </div>
+            </div> -->
 
             <!-- Track Card 3 -->
-            <div onclick="selectTrackAndScroll('Robotics & Embedded Systems')" class="bg-brand-surface rounded-2xl p-6 border border-brand-light shadow-sm hover:shadow-md hover:border-brand-primary transition-all cursor-pointer group flex flex-col justify-between">
+            <!-- <div onclick="selectTrackAndScroll('Robotics & Embedded Systems')" class="bg-brand-surface rounded-2xl p-6 border border-brand-light shadow-sm hover:shadow-md hover:border-brand-primary transition-all cursor-pointer group flex flex-col justify-between">
                 <div>
                     <div class="w-11 h-11 rounded-xl bg-brand-primary-tint text-brand-primary flex items-center justify-center mb-4 group-hover:scale-105 transition-transform">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -317,10 +317,10 @@
                     <span>Select Track</span>
                     <span>&rarr;</span>
                 </div>
-            </div>
+            </div> -->
 
             <!-- Track Card 4 -->
-            <div onclick="selectTrackAndScroll('Data Science & Computational Math')" class="bg-brand-surface rounded-2xl p-6 border border-brand-light shadow-sm hover:shadow-md hover:border-brand-primary transition-all cursor-pointer group flex flex-col justify-between">
+            <!-- <div onclick="selectTrackAndScroll('Data Science & Computational Math')" class="bg-brand-surface rounded-2xl p-6 border border-brand-light shadow-sm hover:shadow-md hover:border-brand-primary transition-all cursor-pointer group flex flex-col justify-between">
                 <div>
                     <div class="w-11 h-11 rounded-xl bg-brand-primary-tint text-brand-primary flex items-center justify-center mb-4 group-hover:scale-105 transition-transform">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -339,7 +339,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <!-- =========================================================================
          MAIN STUDENT REGISTRATION SECTION
@@ -361,9 +361,6 @@
                     </p>
                 </div>
             </div>
-            <button type="button" onclick="fillDemoData()" class="shrink-0 text-xs font-semibold px-3.5 py-2 rounded-lg border border-brand-light text-brand-secondary-dark hover:bg-slate-100 transition-colors">
-                Auto-Fill Sample Student
-            </button>
         </div>
 
         <!-- =====================================================================
@@ -465,18 +462,75 @@
                     </div>
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                        <div>
-                            <label for="academicTrack" class="block text-sm font-semibold text-brand-primary-dark mb-1.5">
-                                Primary Academic Concentration <span class="text-red-600">*</span>
-                            </label>
-                            <select id="academicTrack" name="academicTrack" required class="brand-input w-full px-4 py-2.5 rounded-xl text-sm">
-                                <option value="">Choose your concentration...</option>
-                                <option value="Software Engineering & AI">Software Engineering &amp; AI</option>
-                                <option value="Cybersecurity & Network Defense">Cybersecurity &amp; Network Defense</option>
-                                <option value="Robotics & Embedded Systems">Robotics &amp; Embedded Systems</option>
-                                <option value="Data Science & Computational Math">Data Science &amp; Computational Math</option>
-                            </select>
-                            <p class="error-msg hidden text-xs text-red-600 mt-1">Please select an academic track.</p>
+                        <!-- Specific Courses Selection -->
+                        <div class="sm:col-span-2">
+                            <span class="block text-sm font-semibold text-brand-primary-dark mb-1.5">
+                                Specific Classes You Want to Take <span class="text-red-600">*</span>
+                            </span>
+                            <p class="text-xs text-brand-secondary mb-3">Select all classes that interest you. These selections will be included in your registration.</p>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <label class="flex items-start gap-2.5 p-3 rounded-xl border border-brand-light hover:bg-slate-50 cursor-pointer text-sm">
+                                    <input type="checkbox" name="courses" value="Introduction to Programming" class="mt-0.5 w-4 h-4 rounded accent-slate-800">
+                                    <span><strong>Introduction to Programming</strong><span class="block text-xs text-brand-secondary mt-0.5">Programming fundamentals and problem solving</span></span>
+                                </label>
+
+                                <label class="flex items-start gap-2.5 p-3 rounded-xl border border-brand-light hover:bg-slate-50 cursor-pointer text-sm">
+                                    <input type="checkbox" name="courses" value="Advanced Java Development" class="mt-0.5 w-4 h-4 rounded accent-slate-800">
+                                    <span><strong>Advanced Java Development</strong><span class="block text-xs text-brand-secondary mt-0.5">Object-oriented programming and application development</span></span>
+                                </label>
+
+                                <label class="flex items-start gap-2.5 p-3 rounded-xl border border-brand-light hover:bg-slate-50 cursor-pointer text-sm">
+                                    <input type="checkbox" name="courses" value="Artificial Intelligence & Machine Learning" class="mt-0.5 w-4 h-4 rounded accent-slate-800">
+                                    <span><strong>Artificial Intelligence &amp; Machine Learning</strong><span class="block text-xs text-brand-secondary mt-0.5">AI models, training, and practical applications</span></span>
+                                </label>
+
+                                <label class="flex items-start gap-2.5 p-3 rounded-xl border border-brand-light hover:bg-slate-50 cursor-pointer text-sm">
+                                    <input type="checkbox" name="courses" value="Cybersecurity Fundamentals" class="mt-0.5 w-4 h-4 rounded accent-slate-800">
+                                    <span><strong>Cybersecurity Fundamentals</strong><span class="block text-xs text-brand-secondary mt-0.5">Security principles, threats, and defense</span></span>
+                                </label>
+
+                                <label class="flex items-start gap-2.5 p-3 rounded-xl border border-brand-light hover:bg-slate-50 cursor-pointer text-sm">
+                                    <input type="checkbox" name="courses" value="Ethical Hacking & Penetration Testing" class="mt-0.5 w-4 h-4 rounded accent-slate-800">
+                                    <span><strong>Ethical Hacking &amp; Penetration Testing</strong><span class="block text-xs text-brand-secondary mt-0.5">Authorized security testing techniques</span></span>
+                                </label>
+
+                                <label class="flex items-start gap-2.5 p-3 rounded-xl border border-brand-light hover:bg-slate-50 cursor-pointer text-sm">
+                                    <input type="checkbox" name="courses" value="Networking & Infrastructure" class="mt-0.5 w-4 h-4 rounded accent-slate-800">
+                                    <span><strong>Networking &amp; Infrastructure</strong><span class="block text-xs text-brand-secondary mt-0.5">Network design, protocols, and administration</span></span>
+                                </label>
+
+                                <label class="flex items-start gap-2.5 p-3 rounded-xl border border-brand-light hover:bg-slate-50 cursor-pointer text-sm">
+                                    <input type="checkbox" name="courses" value="Robotics & Embedded Systems" class="mt-0.5 w-4 h-4 rounded accent-slate-800">
+                                    <span><strong>Robotics &amp; Embedded Systems</strong><span class="block text-xs text-brand-secondary mt-0.5">Hardware, sensors, and microcontrollers</span></span>
+                                </label>
+
+                                <label class="flex items-start gap-2.5 p-3 rounded-xl border border-brand-light hover:bg-slate-50 cursor-pointer text-sm">
+                                    <input type="checkbox" name="courses" value="Data Science & Analytics" class="mt-0.5 w-4 h-4 rounded accent-slate-800">
+                                    <span><strong>Data Science &amp; Analytics</strong><span class="block text-xs text-brand-secondary mt-0.5">Statistics, datasets, and data visualization</span></span>
+                                </label>
+
+                                <label class="flex items-start gap-2.5 p-3 rounded-xl border border-brand-light hover:bg-slate-50 cursor-pointer text-sm">
+                                    <input type="checkbox" name="courses" value="Web Development" class="mt-0.5 w-4 h-4 rounded accent-slate-800">
+                                    <span><strong>Web Development</strong><span class="block text-xs text-brand-secondary mt-0.5">Modern websites and web applications</span></span>
+                                </label>
+
+                                <label class="flex items-start gap-2.5 p-3 rounded-xl border border-brand-light hover:bg-slate-50 cursor-pointer text-sm">
+                                    <input type="checkbox" name="courses" value="Game Development" class="mt-0.5 w-4 h-4 rounded accent-slate-800">
+                                    <span><strong>Game Development</strong><span class="block text-xs text-brand-secondary mt-0.5">Game design, mechanics, and programming</span></span>
+                                </label>
+
+                                <label class="flex items-start gap-2.5 p-3 rounded-xl border border-brand-light hover:bg-slate-50 cursor-pointer text-sm">
+                                    <input type="checkbox" name="courses" value="Computer Hardware & Architecture" class="mt-0.5 w-4 h-4 rounded accent-slate-800">
+                                    <span><strong>Computer Hardware &amp; Architecture</strong><span class="block text-xs text-brand-secondary mt-0.5">Computer components and system architecture</span></span>
+                                </label>
+
+                                <label class="flex items-start gap-2.5 p-3 rounded-xl border border-brand-light hover:bg-slate-50 cursor-pointer text-sm">
+                                    <input type="checkbox" name="courses" value="Algorithms & Computational Mathematics" class="mt-0.5 w-4 h-4 rounded accent-slate-800">
+                                    <span><strong>Algorithms &amp; Computational Mathematics</strong><span class="block text-xs text-brand-secondary mt-0.5">Algorithms, logic, and mathematical computing</span></span>
+                                </label>
+
+                            </div>
+                            <p id="courses-error" class="hidden text-xs text-red-600 mt-2">Please select at least one class.</p>
                         </div>
 
                         <div>
@@ -619,9 +673,9 @@
                         <span class="block text-xs font-semibold uppercase text-brand-secondary">Entering Academic Level</span>
                         <span id="receipt-grade" class="font-bold text-brand-primary-dark text-base mt-0.5 block">-</span>
                     </div>
-                    <div>
-                        <span class="block text-xs font-semibold uppercase text-brand-secondary">Selected Concentration</span>
-                        <span id="receipt-track" class="font-bold text-brand-primary text-base mt-0.5 block">-</span>
+                    <div class="sm:col-span-2">
+                        <span class="block text-xs font-semibold uppercase text-brand-secondary">Selected Classes</span>
+                        <span id="receipt-courses" class="font-bold text-brand-primary text-base mt-0.5 block">-</span>
                     </div>
                     <div>
                         <span class="block text-xs font-semibold uppercase text-brand-secondary">Experience Tier</span>
@@ -685,36 +739,30 @@
         </div>
     </footer>
 
-    <!-- =========================================================================
-         MODAL 1: REGISTERED STUDENTS ROSTER (Demo Admin View)
-         ========================================================================= -->
+    <!-- ADMIN LOGIN / CLASS ROSTER DASHBOARD -->
     <div id="admin-roster-modal" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
-        <div class="bg-brand-surface rounded-2xl border border-brand-light max-w-3xl w-full max-h-[85vh] flex flex-col shadow-2xl overflow-hidden">
-            <div class="bg-brand-primary px-6 py-4 text-white flex items-center justify-between">
-                <div>
-                    <h3 class="font-bold text-lg">Submitted Student Registrations</h3>
-                    <p class="text-xs text-slate-300">Saved locally in your browser for project demonstration</p>
-                </div>
-                <button type="button" onclick="toggleAdminModal(false)" class="p-1.5 rounded-lg hover:bg-white/10 text-white">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                </button>
-            </div>
-
-            <div id="roster-list-container" class="p-6 overflow-y-auto flex-grow space-y-3">
-                <!-- Populated dynamically via JS -->
-            </div>
-
-            <div class="px-6 py-4 bg-slate-50 border-t border-brand-light flex justify-between items-center">
-                <button type="button" onclick="clearAllRegistrations()" class="text-xs font-semibold text-red-600 hover:underline">
-                    Clear Roster Data
-                </button>
-                <button type="button" onclick="toggleAdminModal(false)" class="btn-brand-primary px-5 py-2 rounded-lg text-sm font-semibold">
-                    Close
-                </button>
-            </div>
+      <div class="bg-brand-surface rounded-2xl border border-brand-light max-w-5xl w-full max-h-[90vh] flex flex-col shadow-2xl overflow-hidden">
+        <div class="bg-brand-primary px-6 py-4 text-white flex items-center justify-between">
+          <div><h3 class="font-bold text-lg">Administrator Dashboard</h3><p class="text-xs text-slate-300">Secure registration and class roster access</p></div>
+          <button type="button" onclick="toggleAdminModal(false)" class="p-1.5 rounded-lg hover:bg-white/10">✕</button>
         </div>
+        <div id="admin-login-panel" class="p-6 space-y-4">
+          <p class="text-sm text-brand-secondary">Sign in with your authorized administrator account.</p>
+          <label class="block text-sm font-semibold">Admin email<input id="admin-email" type="email" autocomplete="username" class="brand-input w-full mt-1 px-3 py-2 rounded-lg" required></label>
+          <label class="block text-sm font-semibold">Password<input id="admin-password" type="password" autocomplete="current-password" class="brand-input w-full mt-1 px-3 py-2 rounded-lg" required></label>
+          <p id="admin-login-error" class="hidden text-sm text-red-600"></p>
+          <button type="button" onclick="adminLogin()" class="btn-brand-primary px-5 py-2 rounded-lg font-semibold">Log In</button>
+        </div>
+        <div id="admin-dashboard-panel" class="hidden flex-col flex-grow min-h-0">
+          <div class="p-4 border-b border-brand-light flex flex-wrap items-center gap-3">
+            <label class="text-sm font-semibold">Filter by class<select id="roster-course-filter" onchange="filterRosterByCourse()" class="brand-input ml-2 px-3 py-2 rounded-lg"><option value="all">All classes</option></select></label>
+            <button onclick="exportRosterCSV()" class="btn-brand-secondary px-4 py-2 rounded-lg text-sm font-semibold">Export CSV</button>
+            <button onclick="clearCloudRoster()" class="px-4 py-2 rounded-lg text-sm font-semibold text-red-600 border border-red-200">Delete all registrations</button>
+            <button onclick="adminLogout()" class="ml-auto px-4 py-2 rounded-lg text-sm font-semibold border border-brand-light">Log Out</button>
+          </div>
+          <div id="roster-list-container" class="p-5 overflow-y-auto flex-grow space-y-3"><p>Loading roster…</p></div>
+        </div>
+      </div>
     </div>
 
     <!-- =========================================================================
@@ -787,8 +835,8 @@
             logoInitials: "BB"
         };
 
-        // Storage key for saving demo registrations in browser localStorage
         const STORAGE_KEY = "bbicse_registrations_v1";
+        function updateRosterCount() { document.getElementById("roster-count-badge").textContent = "Admin"; document.getElementById("roster-count-badge-mobile").textContent = "Admin"; }
 
         /**
          * Applies SCHOOL_CONFIG values across the DOM on page load
@@ -823,7 +871,6 @@
          * Smoothly selects an Academic Track card and scrolls down to the form
          */
         function selectTrackAndScroll(trackName) {
-            const trackSelect = document.getElementById("academicTrack");
             const formContainer = document.getElementById("registration-form-container");
             const receiptContainer = document.getElementById("receipt-printable");
 
@@ -831,11 +878,7 @@
             receiptContainer.classList.add("hidden");
             formContainer.classList.remove("hidden");
 
-            trackSelect.value = trackName;
-            trackSelect.classList.remove("input-error");
-            
             document.getElementById("register").scrollIntoView({ behavior: "smooth" });
-            setTimeout(() => trackSelect.focus(), 450);
         }
 
         /**
@@ -844,6 +887,7 @@
         function clearErrors() {
             document.getElementById("form-error-banner").classList.add("hidden");
             document.getElementById("terms-error").classList.add("hidden");
+            document.getElementById("courses-error").classList.add("hidden");
             document.querySelectorAll(".brand-input").forEach(input => {
                 input.classList.remove("input-error");
             });
@@ -866,7 +910,6 @@
                 "gradeLevel",
                 "studentEmail",
                 "studentPhone",
-                "academicTrack",
                 "experienceLevel",
                 "guardianName",
                 "guardianRelation",
@@ -890,6 +933,12 @@
                 }
             });
 
+            const selectedCourses = document.querySelectorAll('input[name="courses"]:checked');
+            if (selectedCourses.length === 0) {
+                isValid = false;
+                document.getElementById("courses-error").classList.remove("hidden");
+            }
+
             const termsCheckbox = document.getElementById("termsAgree");
             if (!termsCheckbox.checked) {
                 isValid = false;
@@ -905,35 +954,20 @@
             return isValid;
         }
 
-        /**
-         * Retrieves saved registrations from localStorage
-         */
-        function getSavedRegistrations() {
-            try {
-                return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
-            } catch (e) {
-                return [];
-            }
-        }
-
-        /**
-         * Updates the roster badge counters in the header
-         */
-        function updateRosterCount() {
-            const count = getSavedRegistrations().length;
-            document.getElementById("roster-count-badge").textContent = count;
-            document.getElementById("roster-count-badge-mobile").textContent = count;
-        }
+        // Registration counts are not exposed publicly; the roster requires admin authentication.
+        function updateRosterCount() { document.getElementById("roster-count-badge").textContent = "Admin"; document.getElementById("roster-count-badge-mobile").textContent = "Admin"; }
 
         /**
          * Handles Form Submission
          */
-        document.getElementById("student-registration-form").addEventListener("submit", function(event) {
+        document.getElementById("student-registration-form").addEventListener("submit", async function(event) {
             event.preventDefault();
             if (!validateForm()) return;
 
-            // Gather checked clubs
+            // Gather checked clubs and classes
             const selectedClubs = Array.from(document.querySelectorAll('input[name="clubs"]:checked'))
+                .map(cb => cb.value);
+            const selectedCourses = Array.from(document.querySelectorAll('input[name="courses"]:checked'))
                 .map(cb => cb.value);
 
             // Generate a unique Student Application ID
@@ -949,7 +983,7 @@
                 gradeLevel: document.getElementById("gradeLevel").value,
                 studentEmail: document.getElementById("studentEmail").value.trim(),
                 studentPhone: document.getElementById("studentPhone").value.trim(),
-                academicTrack: document.getElementById("academicTrack").value,
+                courses: selectedCourses,
                 experienceLevel: document.getElementById("experienceLevel").value,
                 clubs: selectedClubs,
                 guardianName: document.getElementById("guardianName").value.trim(),
@@ -957,17 +991,19 @@
                 guardianContact: document.getElementById("guardianContact").value.trim()
             };
 
-            // Save to localStorage for Roster view
-            const existing = getSavedRegistrations();
-            existing.unshift(registrationRecord);
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(existing));
-            updateRosterCount();
+            // Store centrally in Firebase. Do not show the receipt until the save succeeds.
+            try {
+                await window.saveRegistrationToFirebase(registrationRecord);
+            } catch (error) {
+                alert("Registration could not be submitted. Please try again. " + (error?.message || ""));
+                return;
+            }
 
             // Populate Confirmation Receipt
             document.getElementById("receipt-app-id").textContent = registrationRecord.id;
             document.getElementById("receipt-name").textContent = `${registrationRecord.firstName} ${registrationRecord.lastName}`;
             document.getElementById("receipt-grade").textContent = registrationRecord.gradeLevel;
-            document.getElementById("receipt-track").textContent = registrationRecord.academicTrack;
+            document.getElementById("receipt-courses").textContent = registrationRecord.courses.join(", ");
             document.getElementById("receipt-exp").textContent = registrationRecord.experienceLevel;
             document.getElementById("receipt-contact").textContent = `${registrationRecord.studentEmail} • ${registrationRecord.studentPhone}`;
             document.getElementById("receipt-guardian").textContent = `${registrationRecord.guardianName} (${registrationRecord.guardianRelation}) • ${registrationRecord.guardianContact}`;
@@ -992,79 +1028,40 @@
             document.getElementById("register").scrollIntoView({ behavior: "smooth" });
         }
 
-        /**
-         * Auto-fills sample data for quick testing/demonstration
-         */
-        function fillDemoData() {
-            clearErrors();
-            document.getElementById("firstName").value = "Alex";
-            document.getElementById("lastName").value = "Mercer";
-            document.getElementById("dob").value = "2009-05-14";
-            document.getElementById("gradeLevel").value = "Grade 10 (Sophomore)";
-            document.getElementById("studentEmail").value = "alex.mercer@student-demo.edu";
-            document.getElementById("studentPhone").value = "(555) 392-8410";
-            document.getElementById("academicTrack").value = "Software Engineering & AI";
-            document.getElementById("experienceLevel").value = "Intermediate (Some classes or personal projects)";
-            document.getElementById("guardianName").value = "Elena Mercer";
-            document.getElementById("guardianRelation").value = "Parent";
-            document.getElementById("guardianContact").value = "(555) 392-8411";
-            document.getElementById("termsAgree").checked = true;
-        }
 
-        /**
-         * Opens/Closes the Registered Students Roster Modal
-         */
+        let cloudRoster = [];
         function toggleAdminModal(show) {
             const modal = document.getElementById("admin-roster-modal");
-            if (show) {
-                renderRosterList();
-                modal.classList.remove("hidden");
-            } else {
-                modal.classList.add("hidden");
-            }
+            if (show) { modal.classList.remove("hidden"); window.refreshAdminState?.(); }
+            else modal.classList.add("hidden");
         }
-
-        /**
-         * Renders saved student registrations inside the Roster modal
-         */
-        function renderRosterList() {
+        function renderRosterList(records = cloudRoster) {
             const container = document.getElementById("roster-list-container");
-            const records = getSavedRegistrations();
-
-            if (records.length === 0) {
-                container.innerHTML = `
-                    <div class="text-center py-10 text-brand-secondary">
-                        <p class="font-semibold text-brand-primary-dark">No student registrations recorded yet.</p>
-                        <p class="text-xs mt-1">Complete the registration form to see entries appear here.</p>
-                    </div>
-                `;
-                return;
-            }
-
+            if (!records.length) { container.innerHTML = '<p class="text-center py-8 text-brand-secondary">No registrations found for this selection.</p>'; return; }
             container.innerHTML = records.map(rec => `
-                <div class="p-4 rounded-xl border border-brand-light bg-slate-50 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                    <div>
-                        <div class="flex items-center gap-2">
-                            <span class="font-mono-tech text-xs font-bold px-2 py-0.5 rounded bg-brand-primary text-white">${rec.id}</span>
-                            <span class="font-bold text-brand-primary-dark">${rec.firstName} ${rec.lastName}</span>
-                        </div>
-                        <div class="text-xs text-brand-secondary mt-1">
-                            <strong>${rec.academicTrack}</strong> &bull; ${rec.gradeLevel} &bull; ${rec.studentEmail}
-                        </div>
-                    </div>
-                    <div class="text-xs text-brand-secondary sm:text-right">
-                        <div>Registered: ${rec.submittedAt}</div>
-                        <div>Guardian: ${rec.guardianName}</div>
-                    </div>
-                </div>
-            `).join("");
+              <div class="p-4 rounded-xl border border-brand-light bg-slate-50">
+                <div class="flex flex-wrap items-center justify-between gap-2"><div><span class="font-mono-tech text-xs font-bold px-2 py-1 rounded bg-brand-primary text-white">${escapeRoster(rec.id)}</span> <strong>${escapeRoster(rec.firstName)} ${escapeRoster(rec.lastName)}</strong></div><button onclick="deleteCloudRegistration('${escapeRoster(rec.firestoreId)}')" class="text-red-600 text-xs font-semibold">Delete</button></div>
+                <div class="text-sm mt-2"><strong>Classes:</strong> ${escapeRoster((rec.courses||[]).join(', '))}</div>
+                <div class="text-xs text-brand-secondary mt-1">Grade: ${escapeRoster(rec.gradeLevel)} · Email: ${escapeRoster(rec.studentEmail)} · Phone: ${escapeRoster(rec.studentPhone)}</div>
+                <div class="text-xs text-brand-secondary mt-1">DOB: ${escapeRoster(rec.dob)} · Experience: ${escapeRoster(rec.experienceLevel)} · Clubs: ${escapeRoster((rec.clubs||[]).join(', ')||'None')}</div>
+                <div class="text-xs text-brand-secondary mt-1">Guardian: ${escapeRoster(rec.guardianName)} (${escapeRoster(rec.guardianRelation)}) · ${escapeRoster(rec.guardianContact)}</div><div class="text-xs text-brand-secondary mt-1">Application ID: ${escapeRoster(rec.id)} · ${escapeRoster(rec.submittedAt)}</div>
+              </div>`).join("");
         }
-
-        function clearAllRegistrations() {
-            localStorage.removeItem(STORAGE_KEY);
-            updateRosterCount();
-            renderRosterList();
+        function escapeRoster(value) { return String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+        function filterRosterByCourse() { const val=document.getElementById('roster-course-filter').value; renderRosterList(val==='all'?cloudRoster:cloudRoster.filter(r=>(r.courses||[]).includes(val))); }
+        function exportRosterCSV() {
+          const filtered=document.getElementById('roster-course-filter').value;
+          const records=filtered==='all'?cloudRoster:cloudRoster.filter(r=>(r.courses||[]).includes(filtered));
+          const cols=['id','submittedAt','firstName','lastName','dob','gradeLevel','studentEmail','studentPhone','courses','experienceLevel','clubs','guardianName','guardianRelation','guardianContact'];
+          const csv=[cols.join(','),...records.map(r=>cols.map(k=>{let v=Array.isArray(r[k])?r[k].join('; '):(r[k]??'');return '"'+String(v).replace(/"/g,'""')+'"';}).join(','))].join('\n');
+          const blob=new Blob([csv],{type:'text/csv;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='BBICSE-registrations.csv';a.click();URL.revokeObjectURL(url);
         }
+        async function adminLogin(){try{document.getElementById('admin-login-error').classList.add('hidden');await window.firebaseAdminLogin(document.getElementById('admin-email').value,document.getElementById('admin-password').value);}catch(e){const el=document.getElementById('admin-login-error');el.textContent=e.message||'Login failed.';el.classList.remove('hidden');}}
+        async function adminLogout(){await window.firebaseAdminLogout();}
+        async function deleteCloudRegistration(id){if(!confirm('Delete this registration?'))return;await window.firebaseDeleteRegistration(id);}
+        async function clearCloudRoster(){if(!confirm('Permanently delete ALL registrations?'))return;await window.firebaseClearRoster();}
+        window.setCloudRoster = records => { cloudRoster=records; const select=document.getElementById('roster-course-filter');const prior=select.value;const courses=[...new Set(records.flatMap(r=>r.courses||[]))].sort();select.innerHTML='<option value="all">All classes</option>'+courses.map(c=>`<option value="${escapeRoster(c)}">${escapeRoster(c)}</option>`).join('');if(courses.includes(prior))select.value=prior;filterRosterByCourse(); };
+        window.setAdminLoggedIn = logged => {document.getElementById('admin-login-panel').classList.toggle('hidden',logged);document.getElementById('admin-dashboard-panel').classList.toggle('hidden',!logged);document.getElementById('admin-dashboard-panel').classList.toggle('flex',logged);};
 
         /**
          * Live Theme Sandbox Functions (for testing colors/names in the browser)
@@ -1105,5 +1102,32 @@
             updateRosterCount();
         });
     </script>
+
+    <!-- Firebase integration: replace the configuration values below with your Firebase project's web config. -->
+    <script type="module">
+      import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
+      import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
+      import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
+        const firebaseConfig = {
+        apiKey: "AIzaSyCsFhdmn9qfs34YgUsmqsnnqdaulkKcwz4",
+        authDomain: "roster-1e647.firebaseapp.com",
+        databaseURL: "https://roster-1e647-default-rtdb.firebaseio.com",
+        projectId: "roster-1e647",
+        storageBucket: "roster-1e647.firebasestorage.app",
+        messagingSenderId: "401259567046",
+        appId: "1:401259567046:web:f353b2fe0adf72690504c7",
+        measurementId: "G-52BZKZS3X2"
+        };
+      const app=initializeApp(firebaseConfig), auth=getAuth(app), db=getFirestore(app), registrations=collection(db,'registrations');
+      window.saveRegistrationToFirebase=async record=>{await addDoc(registrations,{...record,createdAt:serverTimestamp()});};
+      async function loadRoster(){const snap=await getDocs(registrations);window.setCloudRoster(snap.docs.map(d=>({...d.data(),firestoreId:d.id})));}
+      window.firebaseAdminLogin=async(email,password)=>{await signInWithEmailAndPassword(auth,email,password);};
+      window.firebaseAdminLogout=()=>signOut(auth);
+      window.firebaseDeleteRegistration=async id=>{await deleteDoc(doc(db,'registrations',id));await loadRoster();};
+      window.firebaseClearRoster=async()=>{const snap=await getDocs(registrations);await Promise.all(snap.docs.map(d=>deleteDoc(doc(db,'registrations',d.id))));await loadRoster();};
+      window.refreshAdminState=()=>{if(auth.currentUser)loadRoster().catch(e=>alert('Unable to load registrations: '+e.message));};
+      onAuthStateChanged(auth,async user=>{window.setAdminLoggedIn(!!user);if(user){try{await loadRoster();}catch(e){alert('Roster load failed: '+e.message);}}else window.setCloudRoster([]);});
+    </script>
+
 </body>
 </html>
