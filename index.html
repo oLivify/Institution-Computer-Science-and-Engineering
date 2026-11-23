@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Registration | Baron-Bryan Institution of Computer Science and Engineering</title>
+    <title>Baron-Bryan Institution of Computer Science and Engineering</title>
     
     <!-- Google Fonts: Inter & JetBrains Mono for technical accents -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,6 +12,14 @@
     
     <!-- Tailwind CSS for responsive layout & utilities -->
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- line 450 is class selection-->
+    <!-- line 315 has a bunch of info on the different pages aka this is what you want
+        dupe line 325 to add more courses 
+    
+    -->
+
+
 
     <!-- =========================================================================
          SECTION 1: EASY COLOR & THEME CUSTOMIZATION
@@ -226,19 +234,15 @@
                 </a>
 
                 <!-- DESKTOP NAVIGATION LINKS -->
-                <nav class="hidden md:flex items-center gap-6">
-                    <a href="#admissions-info" class="text-sm font-semibold text-brand-secondary-dark hover:text-brand-primary transition-colors">
-                        Requirements
-                    </a>
-                    <button type="button" onclick="toggleAdminModal(true)" class="text-sm font-semibold text-brand-secondary hover:text-brand-primary flex items-center gap-1.5 transition-colors">
-                        <span>Roster</span>
-                        <span id="roster-count-badge" class="px-2 py-0.5 text-xs font-bold rounded-full bg-brand-primary-tint text-brand-primary">0</span>
-                    </button>
-                    <a href="#register" class="btn-brand-primary px-5 py-2.5 rounded-lg text-sm font-semibold shadow-sm">
-                        Register Now
-                    </a>
+                <nav class="hidden md:flex items-center gap-4 lg:gap-6">
+                    <a href="#home" class="text-sm font-semibold text-brand-secondary-dark hover:text-brand-primary">Home</a>
+                    <a href="#about" class="text-sm font-semibold text-brand-secondary-dark hover:text-brand-primary">About</a>
+                    <a href="#programs" class="text-sm font-semibold text-brand-secondary-dark hover:text-brand-primary">Courses</a>
+                    <a href="#evaluation" class="text-sm font-semibold text-brand-secondary-dark hover:text-brand-primary">Evaluation</a>
+                    <a href="#conduct" class="text-sm font-semibold text-brand-secondary-dark hover:text-brand-primary">Conduct</a>
+                    <button type="button" onclick="toggleAdminModal(true)" class="text-sm font-semibold text-brand-secondary hover:text-brand-primary flex items-center gap-1.5"><span>Admin</span><span id="roster-count-badge" class="px-2 py-0.5 text-xs font-bold rounded-full bg-brand-primary-tint text-brand-primary">0</span></button>
+                    <a href="#register" class="btn-brand-primary px-4 py-2 rounded-lg text-sm font-semibold shadow-sm">Register</a>
                 </nav>
-
                 <!-- MOBILE MENU / ROSTER BUTTON -->
                 <div class="flex items-center gap-2 md:hidden">
                     <button type="button" onclick="toggleAdminModal(true)" class="p-2.5 rounded-lg border border-brand-light text-brand-secondary-dark text-xs font-semibold flex items-center gap-1">
@@ -251,12 +255,15 @@
                 </div>
             </div>
         </div>
+        <nav class="md:hidden pb-3 flex flex-wrap justify-center gap-x-4 gap-y-2 text-xs sm:text-sm font-semibold" aria-label="Main navigation">
+            <a href="#home" class="hover:text-brand-primary">Home</a><a href="#about" class="hover:text-brand-primary">About</a><a href="#programs" class="hover:text-brand-primary">Courses</a><a href="#evaluation" class="hover:text-brand-primary">Evaluation</a><a href="#conduct" class="hover:text-brand-primary">Conduct</a><a href="#register" class="hover:text-brand-primary">Registration</a>
+        </nav>
     </header>
 
     <!-- =========================================================================
          HERO BANNER SECTION
          ========================================================================= -->
-    <section class="bg-brand-primary-dark text-white relative overflow-hidden">
+    <section id="home" class="bg-brand-primary-dark text-white relative overflow-hidden">
         <div class="hero-grid-pattern absolute inset-0 opacity-60 pointer-events-none"></div>
         
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 relative z-10">
@@ -305,6 +312,30 @@
         </div>
     </section>
 
+
+    <!-- INSTITUTION INFORMATION SECTIONS -->
+    <section id="about" class="py-14 sm:py-20 bg-white scroll-mt-28">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl"><p class="text-xs uppercase tracking-widest font-bold text-brand-secondary">About the Institution</p><h2 class="text-3xl font-extrabold mt-2 text-brand-primary-dark">Our Mission &amp; Vision</h2>
+        <p class="mt-5 text-brand-secondary-dark leading-relaxed">Baron-Bryan Institution of Computer Science and Engineering is dedicated to developing capable, creative, and responsible learners through computing and engineering education. Our mission is to encourage curiosity, practical skill-building, collaboration, and thoughtful problem-solving.</p>
+        <h3 class="font-bold text-xl mt-8">Our Mission</h3><p class="mt-2 leading-relaxed text-brand-secondary-dark">To provide accessible, engaging, and rigorous computer science and engineering education that empowers students to build useful technology, solve meaningful problems, and contribute positively to their communities.</p>
+        <h3 class="font-bold text-xl mt-6">Our Vision</h3><p class="mt-2 leading-relaxed text-brand-secondary-dark">To foster a learning community recognized for innovation, technical excellence, integrity, and lifelong learning.</p></div>
+      </div>
+    </section>
+    <section id="programs" class="py-14 sm:py-20 bg-slate-50 scroll-mt-28">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"><p class="text-xs uppercase tracking-widest font-bold text-brand-secondary">Academic offerings</p><h2 class="text-3xl font-extrabold mt-2 text-brand-primary-dark">Courses</h2><p class="mt-3 text-brand-secondary-dark max-w-3xl">Explore foundational and applied courses designed to build skills in software, systems, security, and engineering.</p>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-8">
+          <article class="bg-white rounded-2xl border border-brand-light p-6 shadow-sm"><h3 class="font-bold text-lg">Programming Fundamentals</h3><p class="mt-2 text-sm text-brand-secondary-dark leading-relaxed">Build foundational programming skills, computational thinking, problem-solving, and familiarity with core programming concepts.</p></article>
+          <article class="bg-white rounded-2xl border border-brand-light p-6 shadow-sm"><h3 class="font-bold text-lg">Web Development</h3><p class="mt-2 text-sm text-brand-secondary-dark leading-relaxed">Learn to design and develop interactive web experiences using HTML, CSS, JavaScript, and modern development practices.</p></article>
+          <article class="bg-white rounded-2xl border border-brand-light p-6 shadow-sm"><h3 class="font-bold text-lg">Software Engineering</h3><p class="mt-2 text-sm text-brand-secondary-dark leading-relaxed">Explore software design, requirements, testing, collaboration, version control, and project development workflows.</p></article>
+          <article class="bg-white rounded-2xl border border-brand-light p-6 shadow-sm"><h3 class="font-bold text-lg">Cybersecurity</h3><p class="mt-2 text-sm text-brand-secondary-dark leading-relaxed">Study security fundamentals, safe computing, risk awareness, networking concepts, and defensive techniques.</p></article>
+          <article class="bg-white rounded-2xl border border-brand-light p-6 shadow-sm"><h3 class="font-bold text-lg">Computer Systems</h3><p class="mt-2 text-sm text-brand-secondary-dark leading-relaxed">Understand computer hardware, operating systems, architecture, and the relationship between hardware and software.</p></article>
+          <article class="bg-white rounded-2xl border border-brand-light p-6 shadow-sm"><h3 class="font-bold text-lg">Data &amp; Algorithms</h3><p class="mt-2 text-sm text-brand-secondary-dark leading-relaxed">Develop skills in data organization, algorithmic reasoning, efficiency, and structured problem solving.</p></article>
+        </div><p class="text-xs text-brand-secondary mt-5">Course descriptions are informational examples and can be customized to reflect the institution's official catalog.</p>
+      </div>
+    </section>
+    <section id="evaluation" class="py-14 sm:py-20 bg-white scroll-mt-28"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"><p class="text-xs uppercase tracking-widest font-bold text-brand-secondary">Academic standards</p><h2 class="text-3xl font-extrabold mt-2 text-brand-primary-dark">Student Evaluation</h2><p class="mt-4 max-w-3xl text-brand-secondary-dark leading-relaxed">Students may be evaluated through a combination of assessments that measure understanding, practical skills, effort, and the ability to apply concepts. Each instructor should provide the course-specific grading breakdown at the start of the course.</p><div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-8"><article class="rounded-2xl border border-brand-light p-5"><h3 class="font-bold">Assignments</h3><p class="text-sm text-brand-secondary-dark mt-2">Practice, homework, and skill development tasks.</p></article><article class="rounded-2xl border border-brand-light p-5"><h3 class="font-bold">Projects</h3><p class="text-sm text-brand-secondary-dark mt-2">Applied work demonstrating course skills and creativity.</p></article><article class="rounded-2xl border border-brand-light p-5"><h3 class="font-bold">Assessments</h3><p class="text-sm text-brand-secondary-dark mt-2">Quizzes, tests, examinations, and demonstrations.</p></article><article class="rounded-2xl border border-brand-light p-5"><h3 class="font-bold">Participation</h3><p class="text-sm text-brand-secondary-dark mt-2">Engagement, collaboration, and learning activities where applicable.</p></article></div></div></section>
+    <section id="conduct" class="py-14 sm:py-20 bg-slate-50 scroll-mt-28"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"><p class="text-xs uppercase tracking-widest font-bold text-brand-secondary">Community expectations</p><h2 class="text-3xl font-extrabold mt-2 text-brand-primary-dark">Code of Conduct</h2><p class="mt-4 max-w-3xl text-brand-secondary-dark leading-relaxed">Students are expected to help maintain a respectful, safe, and productive learning environment.</p><div class="mt-8 space-y-4"><article class="bg-white border border-brand-light rounded-xl p-5"><h3 class="font-bold">Respect &amp; Professionalism</h3><p class="text-sm text-brand-secondary-dark mt-2">Treat classmates, instructors, and staff respectfully. Discrimination, harassment, bullying, and intimidation are not acceptable.</p></article><article class="bg-white border border-brand-light rounded-xl p-5"><h3 class="font-bold">Academic Integrity</h3><p class="text-sm text-brand-secondary-dark mt-2">Submit honest work, credit sources, and follow course rules regarding collaboration, AI tools, and assistance.</p></article><article class="bg-white border border-brand-light rounded-xl p-5"><h3 class="font-bold">Responsible Technology Use</h3><p class="text-sm text-brand-secondary-dark mt-2">Use institutional systems and technology responsibly. Do not access, disrupt, damage, or misuse systems or data without authorization.</p></article><article class="bg-white border border-brand-light rounded-xl p-5"><h3 class="font-bold">Learning Environment</h3><p class="text-sm text-brand-secondary-dark mt-2">Follow instructor guidance, participate constructively, and help keep shared learning spaces safe and welcoming.</p></article></div><p class="text-xs text-brand-secondary mt-5">This draft code should be reviewed and finalized by the institution before being treated as official policy.</p></div></section>
 
     <!-- =========================================================================
          MAIN STUDENT REGISTRATION SECTION
@@ -495,32 +526,32 @@
                                 </label>
 
                                 <label class="flex items-start gap-2.5 p-3 rounded-xl border border-brand-light hover:bg-slate-50 cursor-pointer text-sm">
-                                    <input type="checkbox" name="courses" value="CS 101: Introduction to Python Programming" class="mt-0.5 w-4 h-4 rounded accent-slate-800">
+                                    <input type="checkbox" name="courses" value="Introduction to Python Programming" class="mt-0.5 w-4 h-4 rounded accent-slate-800">
                                     <span><strong>Introduction to Python Programming</strong><span class="block text-xs text-brand-secondary mt-0.5">Fundamentals of computational thinking, data structures, and algorithmic problem-solving using Python</span></span>
                                 </label>
 
                                 <label class="flex items-start gap-2.5 p-3 rounded-xl border border-brand-light hover:bg-slate-50 cursor-pointer text-sm">
-                                    <input type="checkbox" name="courses" value="CS 102: Object-Oriented Programming in Java" class="mt-0.5 w-4 h-4 rounded accent-slate-800">
+                                    <input type="checkbox" name="courses" value="Object-Oriented Programming in Java" class="mt-0.5 w-4 h-4 rounded accent-slate-800">
                                     <span><strong>Object-Oriented Programming in Java</strong><span class="block text-xs text-brand-secondary mt-0.5">Core principles of object-oriented design, inheritance, polymorphism, and software development in Java</span></span>
                                 </label>
 
                                 <label class="flex items-start gap-2.5 p-3 rounded-xl border border-brand-light hover:bg-slate-50 cursor-pointer text-sm">
-                                    <input type="checkbox" name="courses" value="CS 210: Systems Programming in C++" class="mt-0.5 w-4 h-4 rounded accent-slate-800">
+                                    <input type="checkbox" name="courses" value="Systems Programming in C++" class="mt-0.5 w-4 h-4 rounded accent-slate-800">
                                     <span><strong>Systems Programming in C++</strong><span class="block text-xs text-brand-secondary mt-0.5">Low-level programming, manual memory management, pointers, and performance optimization using C++</span></span>
                                 </label>
 
                                 <label class="flex items-start gap-2.5 p-3 rounded-xl border border-brand-light hover:bg-slate-50 cursor-pointer text-sm">
-                                    <input type="checkbox" name="courses" value="CS 150: Web Application Development" class="mt-0.5 w-4 h-4 rounded accent-slate-800">
+                                    <input type="checkbox" name="courses" value="Web Application Development" class="mt-0.5 w-4 h-4 rounded accent-slate-800">
                                     <span><strong>Web Application Development</strong><span class="block text-xs text-brand-secondary mt-0.5">Client-side scripting, DOM manipulation, and asynchronous programming with modern JavaScrip.</span></span>
                                 </label>
 
                                 <label class="flex items-start gap-2.5 p-3 rounded-xl border border-brand-light hover:bg-slate-50 cursor-pointer text-sm">
-                                    <input type="checkbox" name="courses" value="CS 220: Enterprise Application Development in C#" class="mt-0.5 w-4 h-4 rounded accent-slate-800">
+                                    <input type="checkbox" name="courses" value="Enterprise Application Development in C#" class="mt-0.5 w-4 h-4 rounded accent-slate-800">
                                     <span><strong>Enterprise Application Development in C#</strong><span class="block text-xs text-brand-secondary mt-0.5">Software architecture, event-driven programming, and scalable application design within the .NET ecosystem</span></span>
                                 </label>
 
                                 <label class="flex items-start gap-2.5 p-3 rounded-xl border border-brand-light hover:bg-slate-50 cursor-pointer text-sm">
-                                    <input type="checkbox" name="courses" value="CS 240: Relational Database Management Systems" class="mt-0.5 w-4 h-4 rounded accent-slate-800">
+                                    <input type="checkbox" name="courses" value="Relational Database Management Systems" class="mt-0.5 w-4 h-4 rounded accent-slate-800">
                                     <span><strong>Relational Database Management Systems</strong><span class="block text-xs text-brand-secondary mt-0.5">Database design, normalization, schema architecture, and complex querying using SQL</span></span>
                                 </label>
 
@@ -1122,6 +1153,43 @@
       window.firebaseClearRoster=async()=>{const snap=await getDocs(registrations);await Promise.all(snap.docs.map(d=>deleteDoc(doc(db,'registrations',d.id))));await loadRoster();};
       window.refreshAdminState=()=>{if(auth.currentUser)loadRoster().catch(e=>alert('Unable to load registrations: '+e.message));};
       onAuthStateChanged(auth,async user=>{window.setAdminLoggedIn(!!user);if(user){try{await loadRoster();}catch(e){alert('Roster load failed: '+e.message);}}else window.setCloudRoster([]);});
+    </script>
+
+
+    /* Multi-page style navigation: show one content page at a time */
+    <style>
+      .site-page { display: none !important; }
+      .site-page.active-site-page { display: block !important; }
+      body.page-transitioning .site-page.active-site-page { animation: pageFade .18s ease-out; }
+      @keyframes pageFade { from { opacity: .65; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+    <script>
+      (() => {
+        const pageIds = ['home','about','programs','evaluation','conduct','register'];
+        function showPage(id, updateHash=true) {
+          if (!pageIds.includes(id)) id = 'home';
+          pageIds.forEach(pageId => {
+            const el = document.getElementById(pageId);
+            if (el) { el.classList.add('site-page'); el.classList.toggle('active-site-page', pageId === id); }
+          });
+          document.body.classList.add('page-transitioning');
+          if (updateHash && location.hash !== '#' + id) history.pushState(null, '', '#' + id);
+          window.scrollTo({top:0,behavior:'smooth'});
+          document.querySelectorAll('nav a[href^="#"]').forEach(link => {
+            const selected = link.getAttribute('href') === '#' + id;
+            link.setAttribute('aria-current', selected ? 'page' : 'false');
+            link.classList.toggle('nav-current', selected);
+          });
+        }
+        document.addEventListener('click', event => {
+          const link = event.target.closest('a[href^="#"]');
+          if (!link) return;
+          const id = link.getAttribute('href').slice(1);
+          if (pageIds.includes(id)) { event.preventDefault(); showPage(id); }
+        });
+        window.addEventListener('popstate', () => showPage(location.hash.slice(1), false));
+        window.addEventListener('DOMContentLoaded', () => showPage(location.hash.slice(1) || 'home', false));
+      })();
     </script>
 
 </body>
